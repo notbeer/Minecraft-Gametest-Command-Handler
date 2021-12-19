@@ -57,8 +57,8 @@ export default class commandParser {
   }
   
   ranGroup() {
-    const args = this?.args
-    const group = args.length ? args[0] : null
+    //const args = this?.args
+    const group = this?.args[0] //args.length ? args[0] : null
     return this.command?.groups?.some(cmdGroup => cmdGroup?.name === group)
   }
 }
