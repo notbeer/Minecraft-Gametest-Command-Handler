@@ -1,5 +1,7 @@
-class parser {
-  constructor(command, args, player) {
+import commandError from './commandError.js'
+
+export default class commandParser {
+  constructor({ command, args, player }) {
     this.command = command
     this.args = args
     this.player = player
