@@ -1,7 +1,7 @@
 import { Commands, World } from 'mojang-minecraft'
 
 export default class commandError {
-  constructor({ message, player, command }) {
+  constructor({ message, player, command } = {}) {
     this.command = command ?? undefined
     this.message = message;
     this.player = player;
