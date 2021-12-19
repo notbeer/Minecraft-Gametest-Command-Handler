@@ -40,8 +40,10 @@ class CustomCommand {
         
      
         const parsedCommand = new commandParser({ command, args, player })
-       
-        //data.callback(command, args);
+        
+        //event.emit('commandRan', some sort of interaction whichwill contain the parsed command)
+        
+        //data.callback(interaction /* interaction will contain parsedCommand */, args);
     };
 };
 
