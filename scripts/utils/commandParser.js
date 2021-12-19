@@ -46,11 +46,10 @@ export default class commandParser {
     let parsedOptions = []
     this.command.options.forEach(option => {
       let index = this.command.options.indexOf(option)
-      //let value = this.ranGroup() ? undefined : args[index]
-      //parsedOptions.push({ ...option, value })
+      let value = this.ranGroup() ? undefined : args[index]
+      
       //if(option.required && !value) //do smt
-      let value = args[index]
-      if(this.ranGroup()) value = undefined
+      
       parsedOptions.push({ ...option, value })
     })
     
