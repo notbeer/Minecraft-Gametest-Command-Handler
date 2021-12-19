@@ -9,7 +9,7 @@ export default class commandParser {
     this.parsedOptions = this.parseOptions()
     this.command.options = this.parsedOptions
     this.command.groups = this.parsedGroups
-    console.log(command)
+    return this.command
   }
   
  
