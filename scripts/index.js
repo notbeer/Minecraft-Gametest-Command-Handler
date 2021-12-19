@@ -1,3 +1,4 @@
+import { World } from "mojang-minecraft"
 import CommandBuilder from "./classes/builders/CommandBuilder";
 const register = new CommandBuilder()
     .setCancelMessage(true)
