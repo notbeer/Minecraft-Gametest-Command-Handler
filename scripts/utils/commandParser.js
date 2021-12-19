@@ -7,7 +7,7 @@ export default class commandParser {
     this.player = player
     this.parsedGroups = this.parseGroups()
     this.parsedOptions = this.parseOptions()
-    this.command.options = this.parsedOptions
+    this.command.inputs = this.parsedOptions
     this.command.groups = this.parsedGroups
     return this.command
   }
@@ -27,7 +27,7 @@ export default class commandParser {
     args?.splice(0, 1)
     parsedGroups?.forEach(parsedGroup => {
       const index = parsedGroups?.indexOf(parsedGroup)
-      const options = parsedGroup?.options
+      const options = parsedGroup?.inputs
       const parsedOptions = []
       options?.forEach(option => {
         let index1 = options?.indexOf(option)
@@ -39,7 +39,7 @@ export default class commandParser {
         parsedOptions.push({ ...option, value })
       })
      
-      parsedGroups[index].options = parsedOptions
+      parsedGroups[index].inputs = parsedOptions
     })
     
     return parsedGroups
@@ -48,8 +48,8 @@ export default class commandParser {
   parseOptions() {
     const args = this.args
     let parsedOptions = []
-    this.command.options.forEach(option => {
-      let index = this.command.options.indexOf(option)
+    this.command?.inputs.forEach(option => {
+      let index = this.command?.inputs.indexOf(option)
       let value = this.ranGroup() ? undefined : args[index]
       
       if(option.required && !value) 
