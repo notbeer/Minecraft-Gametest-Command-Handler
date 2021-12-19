@@ -39,9 +39,8 @@ class CustomCommand {
         
      
         const group = data.groups.filter(elm => elm.name.toLowerCase() === args[0]?.toLowerCase());
-        if (!group.length)
-            return console.log(`No group named "${args[0]}" exist!`);
-        data.callback(command, args);
+       
+        //data.callback(command, args);
     };
 };
 
