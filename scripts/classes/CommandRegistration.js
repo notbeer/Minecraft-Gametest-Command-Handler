@@ -1,7 +1,7 @@
 import Collection from './include/Collection.js';
 import commandError from '../utils/commandError.js';
 
-export default class CustomCommand {
+class CustomCommand {
     constructor() {
         this.prefix = "+";
         this.cooldown = new Map();
@@ -40,3 +40,5 @@ export default class CustomCommand {
     ;
 }
 ;
+
+export default const CommandHandler = new CustomCommand()
