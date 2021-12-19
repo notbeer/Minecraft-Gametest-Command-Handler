@@ -21,7 +21,8 @@ export default class CustomCommand {
     exec(value) {
         if (!value.startsWith(this.prefix))
             return;
-        const args = value.slice(this.prefix.length).trim().split(/\s+/);
+        const args = value.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
+        //const args = value.slice(this.prefix.length).trim().split(/\s+/);
         const command = args.shift().toLowerCase();
         const data = this._get(command);
         if (!data)
