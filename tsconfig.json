@@ -1,0 +1,27 @@
+{
+    "ts-node": {
+        "compilerOptions": {
+          "module": "commonjs"
+        }
+    },
+    "compilerOptions": {
+        "module": "ES2020",
+        "moduleResolution": "node",
+        "target": "ES2020",
+        "lib": [
+            "ES2020",
+            "DOM"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
+        "preserveConstEnums": true,
+        "sourceMap": false,
+        "outDir": "dist"
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "dist",
+    ]
+}
