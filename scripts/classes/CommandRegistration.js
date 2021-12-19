@@ -31,7 +31,12 @@ class CustomCommand {
         const command = args.shift().toLowerCase();
         const data = this._get(command);
         if (!data)
-            return console.log('Command no found');
+            return new commandError({ 
+                message: `${command} is an invalid command! Use the help command to get a list of all the commands.`,
+                player,
+            });
+        
+     
         const group = data.groups.filter(elm => elm.name.toLowerCase() === args[0]?.toLowerCase());
         if (!group.length)
             return console.log(`No group named "${args[0]}" exist!`);
