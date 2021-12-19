@@ -6,20 +6,21 @@ class CustomCommand {
         this.prefix = "+";
         this.cooldown = new Map();
         this.commands = new Collection();
-    }
+    };
+    
     _get(command) {
         const cmd = command.toLowerCase();
         //return this.commands.find(elm => elm?.name === cmd || elm.aliases?.includes(cmd));
         return this.commands.get(cmd) || this.commands.find(v => v.aliases?.includes(cmd));
-    }
-    ;
+    };
+    
     register(registration, callback) {
         this.commands.set(registration.name.toLowerCase(), {
             ...registration,
             callback
         });
-    }
-    ;
+    };
+    
     exec(beforeChatPacket) {
         let { message, sender: player } = beforeChatPacket
         if (!message.startsWith(this.prefix))
@@ -41,9 +42,7 @@ class CustomCommand {
         if (!group.length)
             return console.log(`No group named "${args[0]}" exist!`);
         data.callback(command, args);
-    }
-    ;
-}
-;
+    };
+};
 
 export default const CommandHandler = new CustomCommand()
