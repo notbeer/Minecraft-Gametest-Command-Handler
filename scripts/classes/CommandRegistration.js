@@ -18,11 +18,12 @@ export default class CustomCommand {
         });
     }
     ;
-    exec(value) {
-        if (!value.startsWith(this.prefix))
+    exec(beforeChatPacket) {
+        let { message, sender: player } = beforeChatPacket
+        if (!messafw.startsWith(this.prefix))
             return;
-        const args = value.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
-        //const args = value.slice(this.prefix.length).trim().split(/\s+/);
+        const args = message.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
+        //const args = message.slice(this.prefix.length).trim().split(/\s+/);
         const command = args.shift().toLowerCase();
         const data = this._get(command);
         if (!data)
