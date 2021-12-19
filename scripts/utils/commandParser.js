@@ -48,7 +48,7 @@ export default class commandParser {
       let index = this.command.options.indexOf(option)
       let value = this.ranGroup() ? undefined : args[index]
       
-      //if(option.required && !value) //do smt
+      if(option.required && !value) return new commandError({ message: `input for ${option.name} is required!`, player: this.player, command: this.command })
       
       parsedOptions.push({ ...option, value })
     })
