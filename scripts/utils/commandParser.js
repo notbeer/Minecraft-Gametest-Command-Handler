@@ -14,7 +14,7 @@ export default class commandParser {
   
  
   parseGroups() {
-    if(!this.ranGroup()) return
+    //if(!this.ranGroup()) return; got rid cuz we want not ran and undefined etc if not put
     const args = this.args
     const inputGroup = args[0]
     
