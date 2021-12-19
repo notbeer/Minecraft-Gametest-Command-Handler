@@ -32,6 +32,10 @@ export default class commandParser {
       options.forEach(option => {
         let index1 = options.indexOf(option)
         let value = args[index1]
+        
+        if(option.required && !value)
+           return new commandError({ message: `input for ${option.name} at group ${parsedGroup.name} is required!`, player: this.player, command: this.command })
+        
         parsedOptions.push({ ...option, value })
       })
      
@@ -48,7 +52,8 @@ export default class commandParser {
       let index = this.command.options.indexOf(option)
       let value = this.ranGroup() ? undefined : args[index]
       
-      if(option.required && !value) return new commandError({ message: `input for ${option.name} is required!`, player: this.player, command: this.command })
+      if(option.required && !value) 
+          return new commandError({ message: `input for ${option.name} is required!`, player: this.player, command: this.command })
       
       parsedOptions.push({ ...option, value })
     })
