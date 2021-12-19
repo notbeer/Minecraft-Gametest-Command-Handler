@@ -38,7 +38,7 @@ class CustomCommand {
             });
         
      
-        const group = data.groups.filter(elm => elm.name.toLowerCase() === args[0]?.toLowerCase());
+        
        
         //data.callback(command, args);
     };
