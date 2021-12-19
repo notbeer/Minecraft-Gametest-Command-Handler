@@ -26,6 +26,9 @@ export default class CommandBuilderGroup {
     ;
     addInput(option) {
         this.inputs.push(typeof option === 'function' ? option(new CommandInputOption()) : option);
+        this.inputs.sort((a, b) => {
+          if(a.required === true) return -1
+        })
         return this;
     }
     ;
