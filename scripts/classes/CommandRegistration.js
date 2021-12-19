@@ -22,7 +22,7 @@ class CustomCommand {
     ;
     exec(beforeChatPacket) {
         let { message, sender: player } = beforeChatPacket
-        if (!messafw.startsWith(this.prefix))
+        if (!message.startsWith(this.prefix))
             return;
 
         const args = message.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
