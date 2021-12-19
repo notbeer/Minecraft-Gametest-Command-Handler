@@ -58,6 +58,9 @@ export default class CommandBuilder {
         if (this.inputs.some(elm => elm.name === result.name))
             throw new Error(`Group under the name "${result.name}" already exists.`);
         this.inputs.push(result);
+        this.inputs.sort((a, b) => {
+          if(a.required === true) return -1
+        })
         return this;
     }
     ;
