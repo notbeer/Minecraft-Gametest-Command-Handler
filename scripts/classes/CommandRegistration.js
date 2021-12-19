@@ -7,7 +7,7 @@ export default class CustomCommand {
     }
     _get(command) {
         const cmd = command.toLowerCase();
-        this.commands.find(elm => elm?.name === cmd || elm.aliases?.includes(cmd));
+        return this.commands.find(elm => elm?.name === cmd || elm.aliases?.includes(cmd));
         //return this.commands.get(cmd) || this.commands.find(v => v.aliases?.includes(cmd));
     }
     ;
