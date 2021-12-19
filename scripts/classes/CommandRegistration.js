@@ -1,5 +1,6 @@
 import Collection from './include/Collection.js';
 import commandError from '../utils/commandError.js';
+import commandParser from '../utils/commandParser.js';
 
 class CustomCommand {
     constructor() {
@@ -38,7 +39,7 @@ class CustomCommand {
             });
         
      
-        
+        const parsedCommand = new commandParser({ command, args, player })
        
         //data.callback(command, args);
     };
