@@ -1,4 +1,6 @@
-import Collection from "./include/Collection";
+import Collection from './include/Collection.js';
+import commandError from '../utils/commandError.js';
+
 export default class CustomCommand {
     constructor() {
         this.prefix = "+";
@@ -22,8 +24,10 @@ export default class CustomCommand {
         let { message, sender: player } = beforeChatPacket
         if (!messafw.startsWith(this.prefix))
             return;
+
         const args = message.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
         //const args = message.slice(this.prefix.length).trim().split(/\s+/);
+        
         const command = args.shift().toLowerCase();
         const data = this._get(command);
         if (!data)
