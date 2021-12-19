@@ -19,22 +19,22 @@ export default class commandParser {
     const inputGroup = args[0]
     
     let parsedGroups = []
-    this.command.groups.forEach(group => {
-      const commandRan = group.name === inputGroup
+    this.command?.groups.forEach(group => {
+      const commandRan = group?.name === inputGroup
       parsedGroups.push({ ...group, ran: commandRan })
     })
     
-    args.splice(0, 1)
-    parsedGroups.forEach(parsedGroup => {
-      const index = parsedGroups.indexOf(parsedGroup)
-      const options = parsedGroup.options
+    args?.splice(0, 1)
+    parsedGroups?.forEach(parsedGroup => {
+      const index = parsedGroups?.indexOf(parsedGroup)
+      const options = parsedGroup?.options
       const parsedOptions = []
-      options.forEach(option => {
-        let index1 = options.indexOf(option)
-        let value = args[index1]
+      options?.forEach(option => {
+        let index1 = options?.indexOf(option)
+        let value = args?.length >= index1 ? args[index1] : undefined
         
-        if(option.required && !value)
-           return new commandError({ message: `input for ${option.name} at group ${parsedGroup.name} is required!`, player: this.player, command: this.command })
+        if(option?.required && !value)
+           return new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })
         
         parsedOptions.push({ ...option, value })
       })
