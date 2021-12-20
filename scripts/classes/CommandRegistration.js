@@ -22,33 +22,29 @@ class CustomCommand {
             callback
         });
     };
-    /*
+    /*  
     parseGroups(command, args) {
-    const groups = command?.groups
-    const groupInput = args.shift()
+      const groups = command.groups
+      const groupInput = args.shift()
+  
+      let parsedGroups = []
+      groups?.forEach(group => parsedGroups.push({ ...group, ran: group?.name === groupInput }))
+  
+      parsedGroups?.forEach(parsedGroup => {
+        let groupIndex = parsedGroups.indexOf(parsedGroup)
+        let inputs = parsedGroup?.inputs
+        if(!inputs) return
     
-    let parsedGroups = []
-    groups?.forEach(group => {
-      const commandRan = group?.name === groupInput
-      parsedGroups.push({ ...group, ran: commandRan })
-    })
-    
-    parsedGroups?.forEach(parsedGroup => {
-      const index = parsedGroups?.indexOf(parsedGroup)
-      const options = parsedGroup?.inputs
-      const parsedOptions = []
-      options?.forEach(option => {
-        let index1 = options?.indexOf(option)
-        let value = args?.length >= index1 ? args[index1] : undefined
-        
-        /*if(option?.required && !value)
-           return new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })
-        
-        parsedOptions.push({ ...option, value })
+        let parsedInputs = []
+        inputs.forEach(input => {
+          let inputIndex = inputs.indexOf(input)
+          let playerInput = args[inputIndex] ?? undefined
+      
+          parsedInputs.push({ ...input, playerInput  })
       })
-     
-      parsedGroups[index].inputs = parsedOptions
-    })
+    
+     parsedGroups[groupIndex].inputs = parsedInputs
+   })
     
     return parsedGroups
   }
