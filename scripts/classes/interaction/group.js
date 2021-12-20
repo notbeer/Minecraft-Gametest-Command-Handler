@@ -1,6 +1,6 @@
 import inputInteraction from './input.js'
 
-class groupInteraction {
+export default class groupInteraction {
   constructor(group) {
     this.group = group
   }
