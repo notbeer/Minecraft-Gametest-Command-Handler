@@ -24,7 +24,7 @@ export default class commandInteraction {
   }
   
   getCancelMessage() {
-    return this.command?.cancelmessage
+    return this.command?.cancelMessage
   }
   
   getCoolDown() {
