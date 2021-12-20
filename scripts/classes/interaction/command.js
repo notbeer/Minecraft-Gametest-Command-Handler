@@ -46,6 +46,13 @@ export default class commandInteraction {
     return new inputInteraction(input)
   }
   
+  getInputs() {
+    const data = this.command?.inputs
+    const inputs = []
+    data.forEach(input => inputs.push(new inputInteraction(input)))
+    return inputs
+  }
+  
   getRequiredInputs() {
     const data = this.command?.inputs.filter(input => input.required)
     const inputs = []
@@ -70,6 +77,13 @@ export default class commandInteraction {
   getGroup(name) {
     const group = this.command?.groups.find(group => group?.name == name)
     return new groupInteraction(group)
+  }
+  
+  getGroups() {
+    const data = this.command?.groups
+    const groups = []
+    data.forEach(group => groups.push(new groupInteraction(group)))
+    return groups
   }
   
   getRanGroup() {
