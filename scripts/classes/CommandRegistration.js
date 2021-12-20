@@ -40,7 +40,7 @@ class CustomCommand {
         
      
         const parsedCommand = new commandParser({ command, args, player })
-        const Interaction = new commandInteraction(command, player, args, message)
+        const Interaction = new commandInteraction(command, player, message, args)
         
         //event.emit('commandRan', some sort of interaction whichwill contain the parsed command)
         
