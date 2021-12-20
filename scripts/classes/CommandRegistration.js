@@ -1,6 +1,7 @@
 import Collection from './include/Collection.js';
 import commandError from '../utils/commandError.js';
 import commandParser from '../utils/commandParser.js';
+import commandInteraction from './interaction/command.js';
 
 class CustomCommand {
     constructor() {
@@ -40,8 +41,9 @@ class CustomCommand {
         
      
         const parsedCommand = new commandParser({ command, args, player })
-        const Interaction = new commandInteraction(command, player, message, args)
+        if(parsedCommand.error) return;
         
+        const Interaction = new commandInteraction(command, player, message, args)
         //event.emit('commandRan', some sort of interaction whichwill contain the parsed command)
         
         data.callback(Interaction);
