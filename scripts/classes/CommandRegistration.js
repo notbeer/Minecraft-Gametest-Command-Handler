@@ -22,7 +22,37 @@ class CustomCommand {
             callback
         });
     };
+    /*
+    parseGroups(command, args) {
+    const groups = command?.groups
+    const groupInput = args.shift()
     
+    let parsedGroups = []
+    groups?.forEach(group => {
+      const commandRan = group?.name === groupInput
+      parsedGroups.push({ ...group, ran: commandRan })
+    })
+    
+    parsedGroups?.forEach(parsedGroup => {
+      const index = parsedGroups?.indexOf(parsedGroup)
+      const options = parsedGroup?.inputs
+      const parsedOptions = []
+      options?.forEach(option => {
+        let index1 = options?.indexOf(option)
+        let value = args?.length >= index1 ? args[index1] : undefined
+        
+        /*if(option?.required && !value)
+           return new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })*/
+        
+        parsedOptions.push({ ...option, value })
+      })
+     
+      parsedGroups[index].inputs = parsedOptions
+    })
+    
+    return parsedGroups
+  }
+    */
     exec(beforeChatPacket) {
         let { message, sender: player } = beforeChatPacket
         if (!message.startsWith(this.prefix))
