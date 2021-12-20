@@ -41,7 +41,7 @@ class CustomCommand {
           let playerInput = args[inputIndex] ?? undefined
           
           if(input.required && !playerInput) {
-             new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })
+             new commandError({ message: `input for ${input?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })
              return { error: true }
           }
             
