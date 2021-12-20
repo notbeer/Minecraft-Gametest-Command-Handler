@@ -19,7 +19,7 @@ export default class commandParser {
     const inputGroup = args[0]
     
     let parsedGroups = []
-    this.command?.groups.forEach(group => {
+    this.command?.groups?.forEach(group => {
       const commandRan = group?.name === inputGroup
       parsedGroups.push({ ...group, ran: commandRan })
     })
