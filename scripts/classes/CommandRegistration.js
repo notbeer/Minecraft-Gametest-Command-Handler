@@ -30,20 +30,21 @@ class CustomCommand {
         const args = message.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
         //const args = message.slice(this.prefix.length).trim().split(/\s+/);
         
-        const command = args.shift().toLowerCase();
-        const data = this._get(command);
+        const commandName = args.shift().toLowerCase();
+        const command = this._get(commandName);
         if (!data)
             return new commandError({ 
-                message: `${command} is an invalid command! Use the help command to get a list of all the commands.`,
+                message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`,
                 player,
             });
         
      
         const parsedCommand = new commandParser({ command, args, player })
+        const Interaction = new commandInteraction(command, player, args, message)
         
         //event.emit('commandRan', some sort of interaction whichwill contain the parsed command)
         
-        //data.callback(interaction /* interaction will contain parsedCommand */, args);
+        data.callback(Interaction);
     };
 };
 
