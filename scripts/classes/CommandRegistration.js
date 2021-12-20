@@ -40,7 +40,10 @@ class CustomCommand {
           let inputIndex = inputs.indexOf(input)
           let playerInput = args[inputIndex] ?? undefined
           
-          if(input.required && !playerInput) 
+          if(input.required && !playerInput) {
+             new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })
+             return { error: true }
+          }
             
           parsedInputs.push({ ...input, playerInput  })
       })
