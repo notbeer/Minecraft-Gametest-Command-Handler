@@ -42,7 +42,7 @@ class CustomCommand {
         let value = args?.length >= index1 ? args[index1] : undefined
         
         /*if(option?.required && !value)
-           return new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })*/
+           return new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })
         
         parsedOptions.push({ ...option, value })
       })
