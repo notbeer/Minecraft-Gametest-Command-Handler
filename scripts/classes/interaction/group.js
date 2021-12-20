@@ -26,7 +26,35 @@ class groupInteraction {
   }
   
   getInput(name) {
-    const input = this.group?.options?.find(option => option.name == name)
+    const input = this.group?.inputs?.find(option => option.name == name)
     return new inputInteraction(input)
+  }
+  
+  getInputs() {
+    const data = this.group?.inputs
+    const inputs = []
+    data.forEach(input => inputs.push(new inputInteraction(input)))
+    return inputs
+  }
+  
+  getRequiredInputs() {
+    const data = this.group?.inputs.filter(input => input.required)
+    const inputs = []
+    data.forEach(requiredInput => inputs.push(new inputInteraction(requiredInput)))
+    return inputs
+  }
+  
+  getFilledInputs() {
+    const data = this.group?.inputs.filter(input => input.value != undefined)
+    const inputs = []
+    data.forEach(filledInput => inputs.push(new inputInteraction(filledInput)))
+    return inputs
+  }
+  
+  getNonFilledInputs() {
+    const data = this.group?.inputs.filter(input => input.value == undefined)
+    const inputs = []
+    data.forEach(nonFilledInput => inputs.push(new inputInteraction(nonFilledInput)))
+    return inputs
   }
 }
