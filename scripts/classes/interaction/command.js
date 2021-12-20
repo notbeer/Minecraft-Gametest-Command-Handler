@@ -24,7 +24,7 @@ export default class commandInteraction {
   }
   
   getInput(name) {
-    const input = this.command?.inputs.find(input => input.name == name)
+    const input = this.command?.inputs.find(input => input?.name == name)
     return new inputInteraction(input)
   }
   
