@@ -28,11 +28,24 @@ export default class commandInteraction {
     return new inputInteraction(input)
   }
   
-  getRequiredInputs() {}
+  getRequiredInputs() {
+    const data = this.command?.inputs.filter(input => input.required)
+    const inputs = []
+    data.forEach(requiredInput => inputs.push(new inputInteraction(requiredInput)))
+    return inputs
+  }
   
-  getFilledInputs() {}
+  getFilledInputs() {
+    const data = this.command?.inputs.filter(input => input.value != undefined)
+    const inputs = []
+    data.forEach(filledInput => inputs.push(new inputInteraction(filledInput)))
+  }
   
-  getNonFilledInputs() {}
+  getNonFilledInputs() {
+    const data = this.command?.inputs.filter(input => input.value == undefined)
+    const inputs = []
+    data.forEach(nonFilledInput => inputs.push(new inputInteraction(nonFilledInput)))
+  }
   
   getGroup() {}
   
