@@ -39,7 +39,9 @@ class CustomCommand {
         inputs.forEach(input => {
           let inputIndex = inputs.indexOf(input)
           let playerInput = args[inputIndex] ?? undefined
-      
+          
+          if(input.required && !playerInput) 
+            
           parsedInputs.push({ ...input, playerInput  })
       })
     
