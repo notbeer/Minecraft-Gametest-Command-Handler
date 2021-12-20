@@ -39,17 +39,30 @@ export default class commandInteraction {
     const data = this.command?.inputs.filter(input => input.value != undefined)
     const inputs = []
     data.forEach(filledInput => inputs.push(new inputInteraction(filledInput)))
+    return inputs
   }
   
   getNonFilledInputs() {
     const data = this.command?.inputs.filter(input => input.value == undefined)
     const inputs = []
     data.forEach(nonFilledInput => inputs.push(new inputInteraction(nonFilledInput)))
+    return inputs
   }
   
-  getGroup() {}
+  getGroup(name) {
+    const group = this.command?.groups.find(group => group?.name == name)
+    return new groupInteraction(group)
+  }
   
-  getRanGroup() {}
+  getRanGroup() {
+    const group = this.command?.groups.find(group => group.ran)
+    return group
+  }
   
-  getNonRanGroups
+  getNonRanGroups() {
+    const data = this.command?.groups.filter(group => !group.ran)
+    const groups = []
+    data.forEach(group => groups.push(new groupInteraction(group)))
+    return groups
+  }
 }
