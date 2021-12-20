@@ -2,8 +2,11 @@ import inputInteraction from './input.js'
 import groupInteraction from './group.js'
 
 export default class commandInteraction {
-  constructor(command) {
+  constructor(command, player, message, args) {
     this.command = command
+    this.player = player
+    this.args = args
+    this.messagw = message
   }
   
   getName() {
