@@ -1,4 +1,5 @@
-input inputInteraction from './input.js'
+import inputInteraction from './input.js'
+import groupInteraction from './group.js'
 
 export default class commandInteraction {
   constructor(command) {
