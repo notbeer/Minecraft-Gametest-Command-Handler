@@ -19,6 +19,14 @@ export default class commandInteraction {
     return this.command?.usage
   }
   
+  getPrivate() {
+    return this.command?.private
+  }
+  
+  getCancelMessage() {}
+  
+  getCoolDown() {}
+  
   getRequiredTags() {
     return this.command?.requiredTags
   }
