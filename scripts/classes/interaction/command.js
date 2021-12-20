@@ -1,3 +1,5 @@
+input inputInteraction from './input.js'
+
 export default class commandInteraction {
   constructor(command) {
     this.command = command
