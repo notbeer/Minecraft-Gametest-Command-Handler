@@ -7,6 +7,7 @@ export default class CommandBuilder {
         this.usages = [];
         this.inputs = [];
         this.groups = [];
+        this.cancelMessage = false
     }
     setPrivate(value) {
         validateBoolean(value);
