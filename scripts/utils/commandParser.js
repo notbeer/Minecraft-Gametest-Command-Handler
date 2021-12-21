@@ -7,56 +7,68 @@ export default class commandParser {
     this.args = args
     this.player = player
     this.parsedCommand = {
-      inputs: this.parseInputs(),
-      groups: this.parseGroups(),
+      inputs: this.parseInputs(this.command, this.args, this.player),
+      groups: this.parseGroups(this.command, this.args, this.player),
       ...this.command
     }
   }
   
- 
-  parseGroups() {
-    //if(!this.ranGroup()) return; got rid cuz we want not ran and undefined etc if not put
-    const args = this.args
-    const inputGroup = args[0]
+  parseGroups(command, args, player) {
+      const groups = command.groups
+      const groupInput = args.shift()
+  
+      let parsedGroups = []
+      groups?.forEach(group => parsedGroups.push({ ...group, ran: group?.name === groupInput }))
+  
+      parsedGroups?.forEach(parsedGroup => {
+        let groupIndex = parsedGroups.indexOf(parsedGroup)
+        let inputs = parsedGroup?.inputs
+        if(!inputs) return
     
-    let parsedGroups = []
-    this.command?.groups?.forEach(group => {
-      const commandRan = group?.name === inputGroup
-      parsedGroups.push({ ...group, ran: commandRan })
-    })
-    
-    args?.splice(0, 1)
-    parsedGroups?.forEach(parsedGroup => {
-      const index = parsedGroups?.indexOf(parsedGroup)
-      const options = parsedGroup?.inputs
-      const parsedOptions = []
-      options?.forEach(option => {
-        let index1 = options?.indexOf(option)
-        let value = args?.length >= index1 ? args[index1] : undefined
-        
-        if(option?.required && !value)
-           return new commandError({ message: `input for ${option?.name} at group ${parsedGroup?.name} is required!`, player: this.player, command: this.command })
-        
-        parsedOptions.push({ ...option, value })
+        let parsedInputs = []
+        inputs.forEach(input => {
+          let inputIndex = inputs.indexOf(input)
+          let playerInput = args[inputIndex] ?? undefined
+          
+          if(input.required && !playerInput) {
+            this.error = true
+             new commandError({ message: `input for ${input?.name} at group ${parsedGroup?.name} is required!`, player })
+          }
+          
+          const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
+          if(parsedInput?.error) {
+            this.error = true
+            new commandError({ message: `invalid type for input ${input.name} at group ${parsedGroup.name}. The input type should be a/an ${input.type}`, player })
+          }
+          parsedInputs.push({ ...input, parsedInput  })
       })
-     
-      parsedGroups[index].inputs = parsedOptions
-    })
+    
+     parsedGroups[groupIndex].inputs = parsedInputs
+   })
     
     return parsedGroups
   }
   
-  parseOptions() {
-    const args = this.args
+  parseOptions(command, args, player) {
+    const inputs = command.inputs
+    
     let parsedOptions = []
-    this.command?.inputs.forEach(option => {
-      let index = this.command?.inputs.indexOf(option)
-      let value = this.ranGroup() ? undefined : args[index]
+    inputs?.forEach(input => {
+      let index = inputs?.indexOf(option)
+      let playerInput = this.ranGroup() ? undefined : args[index]
       
-      if(option.required && !value) 
-          return new commandError({ message: `input for ${option.name} is required!`, player: this.player, command: this.command })
+      if(input.required && !playerInput) {
+        new commandError({ message: `input for ${option.name} is required!`, player })
+        this.error = true
+      }
+        
+      const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
+      if(parsedInput?.error) {
+          this.error = true
+          new commandError({ message: `invalid type for input ${input.name}. The input type should be a/an ${input.type}`, player })
+      }
       
-      parsedOptions.push({ ...option, value })
+      parsedOptions.push({ ...option, playerInput })
     })
     
     return parsedOptions
