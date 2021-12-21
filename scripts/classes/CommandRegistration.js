@@ -72,9 +72,11 @@ class CustomCommand {
                 player,
             });
         
-     
-        const parsedCommand = new commandParser({ command, args, player })
-        if(parsedCommand.error) return;
+        try {
+            const parsedCommand = new commandParser({ command, args, player })
+        } catch(e) {
+            return;
+        }
         
         const Interaction = new commandInteraction(command, player, message, args)
         //event.emit('commandRan', some sort of interaction whichwill contain the parsed command)
