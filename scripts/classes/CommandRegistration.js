@@ -73,7 +73,7 @@ class CustomCommand {
             });
         
         try {
-            const parsedCommand = new commandParser({ command, args, player })
+            const parsedCommand = new commandParser({ command, args, player })?.parsedCommand
         } catch(e) {
             return;
         }
