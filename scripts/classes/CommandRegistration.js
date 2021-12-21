@@ -1,6 +1,5 @@
 import Collection from './include/Collection.js';
 import commandError from '../utils/commandError.js';
-import typeParser from '../utils/typeParser.js';
 import commandInteraction from './interaction/command.js';
 
 class CustomCommand {
@@ -22,40 +21,7 @@ class CustomCommand {
             callback
         });
     };
-    /*  
-    parseGroups(command, args, player) {
-      const groups = command.groups
-      const groupInput = args.shift()
-  
-      let parsedGroups = []
-      groups?.forEach(group => parsedGroups.push({ ...group, ran: group?.name === groupInput }))
-  
-      parsedGroups?.forEach(parsedGroup => {
-        let groupIndex = parsedGroups.indexOf(parsedGroup)
-        let inputs = parsedGroup?.inputs
-        if(!inputs) return
     
-        let parsedInputs = []
-        inputs.forEach(input => {
-          let inputIndex = inputs.indexOf(input)
-          let playerInput = args[inputIndex] ?? undefined
-          
-          if(input.required && !playerInput) {
-             new commandError({ message: `input for ${input?.name} at group ${parsedGroup?.name} is required!`, player })
-             return { error: true }
-          }
-          
-          const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
-            
-          parsedInputs.push({ ...input, parsedInput  })
-      })
-    
-     parsedGroups[groupIndex].inputs = parsedInputs
-   })
-    
-    return parsedGroups
-  }
-    */
     exec(beforeChatPacket) {
         let { message, sender: player } = beforeChatPacket
         if (!message.startsWith(this.prefix))
