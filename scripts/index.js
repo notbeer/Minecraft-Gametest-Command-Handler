@@ -1,5 +1,6 @@
 import { World } from "mojang-minecraft"
 import './classes/manager/EventEmitter.js'
+import './commands/import.js'
 
 
 /*import CommandBuilder from "./classes/builders/CommandBuilder";
