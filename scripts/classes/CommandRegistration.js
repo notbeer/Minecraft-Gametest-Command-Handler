@@ -1,6 +1,6 @@
 import Collection from './include/Collection.js';
 import commandError from '../utils/commandError.js';
-import commandParser from '../utils/commandParser.js';
+import typeParser from '../utils/typeParser.js';
 import commandInteraction from './interaction/command.js';
 
 class CustomCommand {
@@ -44,8 +44,10 @@ class CustomCommand {
              new commandError({ message: `input for ${input?.name} at group ${parsedGroup?.name} is required!`, player })
              return { error: true }
           }
+          
+          const parsedInput = playerInput != undefned && input.type != 'any! ? new typeParser()[input.type](playerInput) : playerInput
             
-          parsedInputs.push({ ...input, playerInput  })
+          parsedInputs.push({ ...input, parsedInput  })
       })
     
      parsedGroups[groupIndex].inputs = parsedInputs
