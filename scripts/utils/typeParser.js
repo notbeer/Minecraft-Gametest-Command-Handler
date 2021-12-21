@@ -8,12 +8,12 @@ class typeParser {
   
   int(value) {
     const data = +value
-    if(!data) throw new Error(`${value} is not a number!`} //return { error: true, errorMessage: `${value} is not a number!`}
+    if(!data) throw new Error(`${value} is not a number!`) //return { error: true, errorMessage: `${value} is not a number!`}
     return data
   }
   
   boolean(value) {
-    if(value != 'true' && value != 'false') throw new Error(`${value} is not a boolean`}//return { error: true, errorMessage: `${value} is not a boolean`}
+    if(value != 'true' && value != 'false') throw new Error(`${value} is not a boolean`)//return { error: true, errorMessage: `${value} is not a boolean`}
     return value === 'true'
   }
   
