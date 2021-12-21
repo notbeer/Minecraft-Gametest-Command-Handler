@@ -1,4 +1,5 @@
 import { World } from 'mojang-minecraft'
+import CommandHandler from '../CommandRegistration.js'
 
 export const EventEmitter = class Class {
     constructor() {
@@ -137,6 +138,6 @@ const event = new EventEmitter()
 
 World.events.beforeChat.subscribe(beforeChat => {
     event.emit('beforeChat', beforechat)
-    
+    commandHandler.exec(beforeChat)
 })
 
