@@ -1,4 +1,5 @@
 import Collection from './include/Collection.js';
+import event from './manager/eventHandler.js'
 import commandError from '../utils/commandError.js';
 import commandInteraction from './interaction/command.js';
 
