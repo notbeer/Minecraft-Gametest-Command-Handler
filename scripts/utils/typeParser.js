@@ -1,5 +1,5 @@
 import { World } from 'mojang-minecraft'
-class typeParser {
+export default class typeParser {
   constructor() {}
   
   string(value) {
