@@ -1,5 +1,5 @@
 import Collection from './include/Collection.js';
-import event from './manager/eventHandler.js'
+import EventEmitter from './manager/eventHandler.js'
 import commandError from '../utils/commandError.js';
 import commandInteraction from './interaction/command.js';
 
@@ -46,7 +46,7 @@ class CustomCommand {
         }
         
         const Interaction = new commandInteraction(command, player, message, args)
-        //event.emit('commandRan', some sort of interaction whichwill contain the parsed command)
+        event.emit('commandRan', Interaction)
         
         data.callback(Interaction);
     };
