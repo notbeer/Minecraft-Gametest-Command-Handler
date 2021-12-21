@@ -52,4 +52,4 @@ class CustomCommand {
     };
 };
 
-export default const CommandHandler = new CustomCommand()
+export default CommandHandler = new CustomCommand()
