@@ -45,7 +45,7 @@ class CustomCommand {
              return { error: true }
           }
           
-          const parsedInput = playerInput != undefned && input.type != 'any! ? new typeParser()[input.type](playerInput) : playerInput
+          const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
             
           parsedInputs.push({ ...input, parsedInput  })
       })
