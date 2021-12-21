@@ -33,7 +33,7 @@
         0,
         0
       ],
-      "entry": "scripts/modules/Main.js"
+      "entry": "scripts/index.js"
     }
   ],
   "dependencies": [
