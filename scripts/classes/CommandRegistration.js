@@ -1,5 +1,5 @@
 import Collection from './include/Collection.js';
-import EventEmitter from './manager/eventHandler.js'
+import EventEmitter from './manager/EventEmitter.js'
 import commandError from '../utils/commandError.js';
 import commandInteraction from './interaction/command.js';
 
