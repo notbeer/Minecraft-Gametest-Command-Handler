@@ -1,5 +1,9 @@
 import { World } from "mojang-minecraft"
-import CommandBuilder from "./classes/builders/CommandBuilder";
+import './
+
+/*import CommandBuilder from "./classes/builders/CommandBuilder";
+
+
 const register = new CommandBuilder()
     .setCancelMessage(true)
     .setName('warp')
@@ -20,7 +24,7 @@ const register = new CommandBuilder()
     .setName('name')
     .setDescription('The player name you want to warp to')));
 console.log(JSON.stringify(register.toJSON(), null, 2));
-/*
+
 command.register(register, (data, args) => {
     console.log(data);
 });
