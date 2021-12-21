@@ -141,3 +141,4 @@ World.events.beforeChat.subscribe(beforeChat => {
     commandHandler.exec(beforeChat)
 })
 
+export default event
