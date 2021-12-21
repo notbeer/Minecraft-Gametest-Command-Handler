@@ -1,5 +1,5 @@
-import CommandInputOption from './CommandInputBuilder';
-import { validateString } from '../../utils/validator';
+import CommandInputBuilder from './CommandInputBuilder.js';
+import { validateString } from '../../utils/validator.js';
 export default class CommandBuilderGroup {
     constructor() {
         this.aliases = [];
