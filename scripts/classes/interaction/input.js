@@ -20,6 +20,6 @@ export default class inputInteraction {
   }
   
   getValue() {
-    return this.input?.value
+    return this.input?.playerInput
   }
 }
