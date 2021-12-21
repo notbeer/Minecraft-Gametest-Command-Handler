@@ -138,7 +138,7 @@ const event = new EventEmitter()
 
 World.events.beforeChat.subscribe(beforeChat => {
     event.emit('beforeChat', beforeChat)
-    commandHandler.exec(beforeChat)
+    CommandHandler.exec(beforeChat)
 })
 
 export default event
