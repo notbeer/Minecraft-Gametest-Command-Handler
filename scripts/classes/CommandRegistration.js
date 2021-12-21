@@ -33,7 +33,7 @@ class CustomCommand {
         
         const commandName = args.shift().toLowerCase();
         const command = this._get(commandName);
-        if (!data)
+        if (!command)
             return new commandError({ 
                 message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`,
                 player,
