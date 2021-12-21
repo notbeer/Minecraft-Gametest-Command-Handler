@@ -2,14 +2,17 @@ import commandError from './commandError.js'
 
 export default class commandParser {
   constructor({ command, args, player }) {
-    this.error = false
     this.command = command
     this.args = args
     this.player = player
+    try {
     this.parsedCommand = {
-      inputs: this.parseInputs(this.command, this.args, this.player),
-      groups: this.parseGroups(this.command, this.args, this.player),
-      ...this.command
+        inputs: this.parseInputs(this.command, this.args, this.player),
+        groups: this.parseGroups(this.command, this.args, this.player),
+        ...this.command
+      }
+    } catch(e) {
+      throw new Error()
     }
   }
   
@@ -31,15 +34,17 @@ export default class commandParser {
           let playerInput = args[inputIndex] ?? undefined
           
           if(input.required && !playerInput) {
-            this.error = true
              new commandError({ message: `input for ${input?.name} at group ${parsedGroup?.name} is required!`, player })
+             throw new Error()
           }
           
-          const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
-          if(parsedInput?.error) {
-            this.error = true
-            new commandError({ message: `invalid type for input ${input.name} at group ${parsedGroup.name}. The input type should be a/an ${input.type}`, player })
-          }
+          try {
+             const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
+            } catch(e) {
+              new commandError({ message: `invalid type for input ${input.name} at group ${parsedGroup.name}. The input type should be a/an ${input.type}`
+              throw new Error()
+            }
+          
           parsedInputs.push({ ...input, parsedInput  })
       })
     
@@ -49,29 +54,29 @@ export default class commandParser {
     return parsedGroups
   }
   
-  parseOptions(command, args, player) {
+  parseInputs(command, args, player) {
     const inputs = command.inputs
     
-    let parsedOptions = []
+    let parsedInputs = []
     inputs?.forEach(input => {
       let index = inputs?.indexOf(option)
       let playerInput = this.ranGroup() ? undefined : args[index]
       
       if(input.required && !playerInput) {
-        new commandError({ message: `input for ${option.name} is required!`, player })
-        this.error = true
+        new commandError({ message: `input for ${input.name} is required!`, player })
+        throw new Error()
       }
         
       const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
       if(parsedInput?.error) {
-          this.error = true
           new commandError({ message: `invalid type for input ${input.name}. The input type should be a/an ${input.type}`, player })
+          throw new Error()
       }
       
-      parsedOptions.push({ ...option, playerInput })
+      parsedInputs.push({ ...option, playerInput })
     })
     
-    return parsedOptions
+    return parsedInputs
   }
   
   ranGroup() {
