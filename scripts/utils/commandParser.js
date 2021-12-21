@@ -2,14 +2,15 @@ import commandError from './commandError.js'
 
 export default class commandParser {
   constructor({ command, args, player }) {
+    this.error = false
     this.command = command
     this.args = args
     this.player = player
-    this.parsedGroups = this.parseGroups()
-    this.parsedOptions = this.parseOptions()
-    this.command.inputs = this.parsedOptions
-    this.command.groups = this.parsedGroups
-    return this.command
+    this.parsedCommand = {
+      inputs: this.parseInputs(),
+      groups: this.parseGroups(),
+      ...this.command
+    }
   }
   
  
