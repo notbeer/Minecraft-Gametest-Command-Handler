@@ -1,6 +1,6 @@
 import CommandInputBuilder from './CommandInputBuilder.js';
 import { validateString } from '../../utils/validator.js';
-export default class CommandBuilderGroup {
+export default class CommandGroupBuilder {
     constructor() {
         this.aliases = [];
         this.inputs = [];
@@ -25,7 +25,7 @@ export default class CommandBuilderGroup {
     }
     ;
     addInput(option) {
-        this.inputs.push(typeof option === 'function' ? option(new CommandInputOption()) : option);
+        this.inputs.push(typeof option === 'function' ? option(new CommandInputBuilder()) : option);
         this.inputs.sort((a, b) => {
           if(a.required === true) return -1
         })
