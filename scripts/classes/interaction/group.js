@@ -14,7 +14,7 @@ export default class groupInteraction {
   }
   
   getDescription() {
-    retrun this.group?.description
+    return this.group?.description
   }
   
   getAliases() {
