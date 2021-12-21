@@ -39,7 +39,7 @@ export default class commandParser {
           }
           
           try {
-             const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
+             const parsedInput = playerInput != undefined && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
             } catch(e) {
               new commandError({ message: `invalid type for input ${input.name} at group ${parsedGroup.name}. The input type should be a/an ${input.type}`
               throw new Error()
@@ -67,7 +67,7 @@ export default class commandParser {
         throw new Error()
       }
         
-      const parsedInput = playerInput != undefned && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
+      const parsedInput = playerInput != undefined && input.type != 'any' ? new typeParser()[input.type](playerInput) : playerInput
       if(parsedInput?.error) {
           new commandError({ message: `invalid type for input ${input.name}. The input type should be a/an ${input.type}`, player })
           throw new Error()
