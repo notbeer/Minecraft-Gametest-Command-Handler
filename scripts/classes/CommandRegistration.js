@@ -52,5 +52,5 @@ class CustomCommand {
     };
 };
 
-const CommandHandler = bew CustomCommand()
+const CommandHandler = new CustomCommand()
 export default CommandHandler 
