@@ -21,7 +21,7 @@ export default class commandParser {
       const groupInput = args.shift()
   
       let parsedGroups = []
-      groups?.forEach(group => parsedGroups.push({ ...group, ran: group?.name === groupInput }))
+      groups?.forEach(group => parsedGroups.push({ ...group, ran: group?.name === groupInput || group?.aliases.includes(groupInput) }))
   
       parsedGroups?.forEach(parsedGroup => {
         let groupIndex = parsedGroups.indexOf(parsedGroup)
