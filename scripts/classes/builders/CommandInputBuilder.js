@@ -1,6 +1,9 @@
 import { validateBoolean, validateString } from '../../utils/validator.js';
-const inputTypeOpt = ['string', 'boolean', 'int', 'int8', 'int16', 'int32', 'int64', 'uint', 'uint8', 'uint16', 'uint32', 'uint64', 'float32', 'float64'];
+const inputTypeOpt = ['any', 'string', 'boolean', 'int', 'int8', 'int16', 'int32', 'int64', 'uint', 'uint8', 'uint16', 'uint32', 'uint64', 'float32', 'float64'];
 export default class CommandInputBuilder {
+    constructor() {
+        this.type = 'any'
+    }
     setRequired(value) {
         validateBoolean(value);
         this.required = value;
