@@ -45,7 +45,7 @@ class CustomCommand {
             return;
         }
         
-        const Interaction = new commandInteraction(command, player, message, args)
+        const Interaction = new commandInteraction(parsedCommand, player, message, args)
         event.emit('commandRan', Interaction)
         
         data.callback(Interaction);
