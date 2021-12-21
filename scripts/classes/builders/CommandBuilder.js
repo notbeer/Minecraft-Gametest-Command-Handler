@@ -1,5 +1,5 @@
 import CommandInputBuilder from './CommandInputBuilder.js';
-import CommandBuilderGroup from './CommandGroupBuilder.js';
+import CommandGroupBuilder from './CommandGroupBuilder.js';
 import { validateBoolean, validateString } from '../../utils/validator.js';
 export default class CommandBuilder {
     constructor() {
@@ -55,7 +55,7 @@ export default class CommandBuilder {
     }
     ;
     addInput(option) {
-        const result = typeof option === 'function' ? option(new CommandInputOption()) : option;
+        const result = typeof option === 'function' ? option(new CommandInputBuilder()) : option;
         if (this.inputs.some(elm => elm.name === result.name))
             throw new Error(`Group under the name "${result.name}" already exists.`);
         this.inputs.push(result);
@@ -66,7 +66,7 @@ export default class CommandBuilder {
     }
     ;
     addGroup(option) {
-        const result = typeof option === 'function' ? option(new CommandBuilderGroup()) : option;
+        const result = typeof option === 'function' ? option(new CommandGroupBuilder()) : option;
         if (this.groups.some(elm => elm.name === result.name))
             throw new Error(`Group under the name "${result.name}" already exists.`);
         this.groups.push(result);
