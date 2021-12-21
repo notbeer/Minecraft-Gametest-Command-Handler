@@ -1,3 +1,5 @@
+import { World } from 'mojang-minecraft'
+
 export const EventEmitter = class Class {
     constructor() {
         this._listeners = [];
@@ -130,3 +132,11 @@ export const EventEmitter = class Class {
     }
     ;
 };
+
+const event = new EventEmitter()
+
+World.events.beforeChat.subscribe(beforeChat => {
+    event.emit('beforeChat', beforechat)
+    
+})
+
