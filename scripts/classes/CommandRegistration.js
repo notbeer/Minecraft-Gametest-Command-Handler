@@ -27,7 +27,8 @@ class CustomCommand {
         let { message, sender: player } = beforeChatPacket
         if (!message.startsWith(this.prefix))
             return;
-
+        
+        beforeChatPacket.cancel = true
         const args = message.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
         //const args = message.slice(this.prefix.length).trim().split(/\s+/);
         
@@ -39,6 +40,7 @@ class CustomCommand {
                 player,
             });
         
+        beforeChatPacket.cancel = command.cancelMessage
         try {
             const parsedCommand = new commandParser({ command, args, player })?.parsedCommand
         } catch(e) {
