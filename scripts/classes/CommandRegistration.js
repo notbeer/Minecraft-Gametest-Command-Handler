@@ -35,18 +35,18 @@ class CustomCommand {
         
         const commandName = args.shift().toLowerCase();
         const command = this._get(commandName);
-        if (!command)
-            return new commandError({ 
-                message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`,
-                player,
-            });
+        if (!command) {
+            new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player, });
+            return;
+        }
         
         beforeChatPacket.cancel = command.cancelMessage
         
         try {
             const ParsedCommand = new CommandParser({ command, args })
         }  catch(e) {
-            new commandError({ message: e.message, player })
+            new CommandError({ message: e.message, player })
+            return
         }
         
         const Interaction = new commandInteraction(ParsedCommand, player, message, args)
