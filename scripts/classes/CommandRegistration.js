@@ -52,7 +52,7 @@ class CustomCommand {
         const Interaction = new CommandInteraction(ParsedCommand, player, message, args)
         event.emit('commandRan', Interaction)
         
-        data.callback(Interaction);
+        command.callback(Interaction);
     };
 };
 
