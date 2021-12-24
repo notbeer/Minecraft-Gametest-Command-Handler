@@ -1,6 +1,6 @@
 import { World } from 'mojang-minecraft'
 
-export default class CommandTypeParser {
+export default class CommandTypeParserBuilder {
   constructor() {}
   
   toString(value) {
@@ -24,3 +24,6 @@ export default class CommandTypeParser {
     return player
   }
 }
+
+let CommandTypeParser = new CommandTypeParserBuilder()
+export default CommandTypeParser 
