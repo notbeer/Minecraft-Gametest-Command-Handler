@@ -6,7 +6,7 @@ export default class groupInteraction {
   }
   
   getRan() {
-    return this.group?.ran
+    return this.group?.ranByPlayer
   }
   
   getName() {
