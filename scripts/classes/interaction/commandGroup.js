@@ -27,34 +27,34 @@ export default class CommandGroupInteraction {
   
   getInput(name) {
     const input = this.group?.inputs?.find(option => option.name == name)
-    return new inputInteraction(input)
+    return new CommandInputInteraction(input)
   }
   
   getInputs() {
     const data = this.group?.inputs
     const inputs = []
-    data.forEach(input => inputs.push(new inputInteraction(input)))
+    data.forEach(input => inputs.push(new CommandInputInteraction(input)))
     return inputs
   }
   
   getRequiredInputs() {
     const data = this.group?.inputs.filter(input => input.required)
     const inputs = []
-    data.forEach(requiredInput => inputs.push(new inputInteraction(requiredInput)))
+    data.forEach(requiredInput => inputs.push(new CommandInputInteraction(requiredInput)))
     return inputs
   }
   
   getFilledInputs() {
     const data = this.group?.inputs.filter(input => input.value != undefined)
     const inputs = []
-    data.forEach(filledInput => inputs.push(new inputInteraction(filledInput)))
+    data.forEach(filledInput => inputs.push(new CommandInputInteraction(filledInput)))
     return inputs
   }
   
   getNonFilledInputs() {
     const data = this.group?.inputs.filter(input => input.value == undefined)
     const inputs = []
-    data.forEach(nonFilledInput => inputs.push(new inputInteraction(nonFilledInput)))
+    data.forEach(nonFilledInput => inputs.push(new CommandInputInteraction(nonFilledInput)))
     return inputs
   }
 }
