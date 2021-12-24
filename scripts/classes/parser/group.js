@@ -15,7 +15,7 @@ export default class CommandGroupsParser {
     for(const ParsedGroup of ParsedGroups) {
       const GroupIndex = ParsedGroups.indexOf(ParsedGroup)
       const GroupInputs = ParsedGroup.inputs
-      if(!GroupInputs) continue;
+      if(!GroupInputs || !ParsedGroup.ran) continue;
       
       this.args.shift()
       let ParsedGroupInputs = new CommandInputsParser({ inputs: GroupInputs, args: this.args )
