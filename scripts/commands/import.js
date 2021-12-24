@@ -1,1 +1,1 @@
-
+import './test.js'
