@@ -6,7 +6,7 @@ export default class CommandInteraction {
     this.command = command
     this.player = player
     this.args = args
-    this.messagw = message
+    this.message = message
   }
   
   getName() {
