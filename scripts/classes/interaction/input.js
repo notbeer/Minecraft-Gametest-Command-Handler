@@ -16,7 +16,7 @@ export default class inputInteraction {
   }
   
   getType() {
-    return this.input?.type
+    return this.input?.playerInput
   }
   
   getValue() {
