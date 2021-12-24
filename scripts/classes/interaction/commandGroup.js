@@ -1,6 +1,6 @@
-import inputInteraction from './input.js'
+import CommandInputInteraction from './commandInput.js'
 
-export default class groupInteraction {
+export default class CommandGroupInteraction {
   constructor(group) {
     this.group = group
   }
