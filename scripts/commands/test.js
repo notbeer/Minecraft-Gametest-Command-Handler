@@ -20,5 +20,5 @@ const registration = new CommandBuilder()
 
 CommandHandler.register(registration, (interaction) => {
   const input = interaction.command.getInput('test1')
-  Commands.run("say this actually works! wow! input value" + input)
+  Commands.run("say this actually works! wow! input value" + input, World.getDimension("overworld"))
 })
