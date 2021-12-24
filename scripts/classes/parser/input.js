@@ -11,7 +11,7 @@ export default class CommandInputsParser {
     
     for(const Input of this.inputs) {
       const InputIndex = this.inputs.indexOf(Input)
-      let playerInput = this.args[index]
+      let playerInput = this.args[InputIndex]
       
       if(Input.required && !playerInput)
         throw new Error(`input for ${Input.name} is required!`)
