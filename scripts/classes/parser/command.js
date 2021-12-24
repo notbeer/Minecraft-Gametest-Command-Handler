@@ -9,9 +9,8 @@ export default class CommandParser {
   }
   
   toParsedCommand() {
-    Commands.run(`say ${this.ranGroup()}`, World.getDimension("overworld"))
-    const ParsedGroups = new CommandGroupsParser({ groups: this.command.groups, args: this.args }).toParsedGroups()
     const ParsedInputs = this.ranGroup() ? this.command.inputs : new CommandInputsParser({ inputs: this.command.inputs, args: this.args }).toParsedInputs()
+    const ParsedGroups = new CommandGroupsParser({ groups: this.command.groups, args: this.args }).toParsedGroups()
     const ParsedCommand = { ...this.command, inputs: ParsedInputs, groups: ParsedGroups }  
     
     return ParsedCommand
