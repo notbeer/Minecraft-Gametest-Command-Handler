@@ -47,7 +47,7 @@ export default class CommandInputsParser {
         throw new Error(`incorrect input type for ${Input.name}, input type must be a/an ${Input.type}`)
       }
       
-      ParsedInputs.push({ ...input, playerInput })
+      ParsedInputs.push({ ...Input, playerInput })
     }
     return ParsedInputs
   }
