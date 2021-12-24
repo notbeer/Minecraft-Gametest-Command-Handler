@@ -1,5 +1,6 @@
 import CommandGroupsParser from './group.js'
 import CommandInputsParser from './input.js'
+import { World, Commands } from 'mojang-minecraft'
 
 export default class CommandParser {
   constructor({ command, args }) {
@@ -8,6 +9,7 @@ export default class CommandParser {
   }
   
   toParsedCommand() {
+    Commands.run(`say ${this.ranGroup()}` World.getDimension("overworld"))
     const ParsedGroups = new CommandGroupsParser({ groups: this.command.groups, args: this.args }).toParsedGroups()
     const ParsedInputs = this.ranGroup() ? this.command.inputs : new CommandInputsParser({ inputs: this.command.inputs, args: this.args }).toParsedInputs()
     const ParsedCommand = { ...this.command, inputs: ParsedInputs, groups: ParsedGroups }  
