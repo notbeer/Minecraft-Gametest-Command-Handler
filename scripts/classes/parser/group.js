@@ -18,7 +18,7 @@ export default class CommandGroupsParser {
       if(!GroupInputs || !ParsedGroup.ranByPlayer) continue;
       
       this.args.shift()
-      let ParsedGroupInputs = new CommandInputsParser({ inputs: GroupInputs, args: this.args })
+      let ParsedGroupInputs = new CommandInputsParser({ inputs: GroupInputs, args: this.args }).toParsedInputs()
       ParsedGroups[GroupIndex].inputs = ParsedGroupInputs
     }
                
