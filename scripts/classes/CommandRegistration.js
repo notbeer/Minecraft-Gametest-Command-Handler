@@ -44,7 +44,7 @@ class CustomCommand {
         
         let ParsedCommand;
         try {
-            ParsedCommand = new CommandParser({ command, args })
+            ParsedCommand = new CommandParser({ command, args }).toParsedCommand()
         }  catch(e) {
             new CommandError({ message: e.message, player })
             return
