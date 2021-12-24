@@ -9,12 +9,12 @@ const registration = new CommandBuilder()
 .setUsage(['this is a test!'])
 .setCancelMessage(false)
 .addInput(input => {
-  input.setName('test1').setRequired(true).setType('string')
+  return input.setName('test1').setRequired(true).setType('string')
 })
 .addGroup(group => {
-  group.setName('test2')
+  return group.setName('test2')
   .addInput(input => {
-    input.setName('test21').setRequired(true).setType('any')
+    return input.setName('test21').setRequired(true).setType('any')
   })
 })
 
