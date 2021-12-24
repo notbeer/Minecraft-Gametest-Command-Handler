@@ -1,6 +1,5 @@
 import CommandGroupsParser from './group.js'
 import CommandInputsParser from './input.js'
-import { World, Commands } from 'mojang-minecraft'
 
 export default class CommandParser {
   constructor({ command, args }) {
