@@ -49,7 +49,7 @@ class CustomCommand {
             return
         }
         
-        const Interaction = new commandInteraction(ParsedCommand, player, message, args)
+        const Interaction = new CommandInteraction(ParsedCommand, player, message, args)
         event.emit('commandRan', Interaction)
         
         data.callback(Interaction);
