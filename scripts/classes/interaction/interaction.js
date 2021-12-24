@@ -1,12 +1,9 @@
 import CommandInputInteraction from './commandInput.js'
 import CommndGroupInteraction from './commandGroup.js'
 
-export default class Interaction {
+export default class CommandInteraction {
   constructor(command, player, message, args) {
-    this.command = new CommandInteraction(command)
-    this.player = player
-    this.args = args
-    this.message = message
+    this.command = command
   }
   
   getName() {
