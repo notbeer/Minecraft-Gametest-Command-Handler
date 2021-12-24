@@ -1,3 +1,3 @@
-export default class CommandInputParser {
+export default class CommandInputsParser {
   
 }
