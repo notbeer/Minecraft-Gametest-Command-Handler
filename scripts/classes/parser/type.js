@@ -1,6 +1,6 @@
 import { World } from 'mojang-minecraft'
 
-export default class CommandTypeParserBuilder {
+export class CommandTypeParserBuilder {
   constructor() {
     this.types = [
       {
