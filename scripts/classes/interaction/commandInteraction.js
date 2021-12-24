@@ -46,40 +46,40 @@ export default class CommandInteraction {
   getInputs() {
     const data = this.command?.inputs
     const inputs = []
-    data.forEach(input => inputs.push(new inputInteraction(input)))
+    data.forEach(input => inputs.push(new CommandInputInteraction(input)))
     return inputs
   }
   
   getRequiredInputs() {
     const data = this.command?.inputs.filter(input => input.required)
     const inputs = []
-    data.forEach(requiredInput => inputs.push(new inputInteraction(requiredInput)))
+    data.forEach(requiredInput => inputs.push(new CommandInputInteraction(requiredInput)))
     return inputs
   }
   
   getFilledInputs() {
     const data = this.command?.inputs.filter(input => input.value != undefined)
     const inputs = []
-    data.forEach(filledInput => inputs.push(new inputInteraction(filledInput)))
+    data.forEach(filledInput => inputs.push(new CommandInputInteraction(filledInput)))
     return inputs
   }
   
   getNonFilledInputs() {
     const data = this.command?.inputs.filter(input => input.value == undefined)
     const inputs = []
-    data.forEach(nonFilledInput => inputs.push(new inputInteraction(nonFilledInput)))
+    data.forEach(nonFilledInput => inputs.push(new CommandInputInteraction(nonFilledInput)))
     return inputs
   }
   
   getGroup(name) {
     const group = this.command?.groups.find(group => group?.name == name)
-    return new groupInteraction(group)
+    return new CommndGroupInteraction(group)
   }
   
   getGroups() {
     const data = this.command?.groups
     const groups = []
-    data.forEach(group => groups.push(new groupInteraction(group)))
+    data.forEach(group => groups.push(new CommndGroupInteraction(group)))
     return groups
   }
   
@@ -91,7 +91,7 @@ export default class CommandInteraction {
   getNonRanGroups() {
     const data = this.command?.groups.filter(group => !group.ran)
     const groups = []
-    data.forEach(group => groups.push(new groupInteraction(group)))
+    data.forEach(group => groups.push(new CommndGroupInteraction(group)))
     return groups
   }
 }
