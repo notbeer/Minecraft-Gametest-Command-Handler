@@ -1,5 +1,5 @@
 import CommandInputInteraction from './commandInput.js'
-import CommndGroupInteraction from './commandGroup.js'
+import CommandGroupInteraction from './commandGroup.js'
 
 export default class CommandInteraction {
   constructor(command) {
@@ -40,7 +40,7 @@ export default class CommandInteraction {
   
   getInput(name) {
     const input = this.command?.inputs.find(input => input?.name == name)
-    return new inputInteraction(input)
+    return new CommandInputInteraction(input)
   }
   
   getInputs() {
@@ -73,13 +73,13 @@ export default class CommandInteraction {
   
   getGroup(name) {
     const group = this.command?.groups.find(group => group?.name == name)
-    return new CommndGroupInteraction(group)
+    return new CommandGroupInteraction(group)
   }
   
   getGroups() {
     const data = this.command?.groups
     const groups = []
-    data.forEach(group => groups.push(new CommndGroupInteraction(group)))
+    data.forEach(group => groups.push(new CommandGroupInteraction(group)))
     return groups
   }
   
@@ -91,7 +91,7 @@ export default class CommandInteraction {
   getNonRanGroups() {
     const data = this.command?.groups.filter(group => !group.ran)
     const groups = []
-    data.forEach(group => groups.push(new CommndGroupInteraction(group)))
+    data.forEach(group => groups.push(new CommandGroupInteraction(group)))
     return groups
   }
 }
