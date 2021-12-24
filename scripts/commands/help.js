@@ -1,14 +1,24 @@
-import CommandBuilder from "./classes/builders/CommandBuilder";
-const register = new CommandBuilder()
-    .setCancelMessage(true)
-    .setName('help')
-    .setAliases(['h'])
-    .setDescription('get help!')
-    .setUsage(['help', 'help <command name>'])
-    .addInput(input => input.setName('command name').setDescription('name of command you need help on').setType('string'))
+import { World, Commands } from "mojang-minecraft"
+import CommandBuilder from "../classes/builders/CommandBuilder.js";
+import CommandHandler from "../classes/CommandRegistration.js"
 
-<comamd smt>.register(register, (interaction) => {
-  const commandName = interaction.command.getInput('command name')
-  if(!commandName) //send msg
-  //retrive info for command etc
+const registration = new CommandBuilder()
+.setName('test')
+.setAliases(['t'])
+.setDescription('testing to see if the command handler works!')
+.setUsage(['this is a test!'])
+.setCancelMessage(false)
+.addInput(input => {
+  input.setName('test1').setRequired(true).setType('string')
+})
+.addGroup(group => {
+  group.setName('test2')
+  .addInput(input => {
+    input.setName('test21').setRequired(true).setType('any')
+  })
+})
+
+CommandHandler.register(registration, (interaction) => {
+  const input = interaction.command.getInput('test1')
+  Commands.run("say this actually works! wow! input value" + input)
 })
