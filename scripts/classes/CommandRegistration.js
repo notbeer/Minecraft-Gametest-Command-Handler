@@ -42,8 +42,9 @@ class CustomCommand {
         
         beforeChatPacket.cancel = command.cancelMessage
         
+        let ParsedCommand;
         try {
-            const ParsedCommand = new CommandParser({ command, args })
+            ParsedCommand = new CommandParser({ command, args })
         }  catch(e) {
             new CommandError({ message: e.message, player })
             return
