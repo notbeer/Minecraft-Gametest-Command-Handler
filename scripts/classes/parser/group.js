@@ -8,19 +8,18 @@ export default class CommandGroupsParser {
   
   toParsedGroups() {
     const groups = this.command.groups
-    const ParsedGroups = []
+    let ParsedGroups = []
     
     groups.forEach(group => ParsedGroups.push({ ...group, ranByPlayer: this.args[0] === group.name }))
     
     for(const ParsedGroup of ParsedGroups) {
+      const GroupIndex = ParsedGroups.indexOf(ParsedGroup)
       const GroupInputs = ParsedGroup.inputs
-      const ParsedGroupInputs = []
+      if(!GroupInputs) continue;
       
-      if(!ParsedGroupInputs) continue;
-      
-      for(const GroupInput of GroupInputs) {
-        a
-      }
+      this.args.shift()
+      let ParsedGroupInputs = new CommandInputsParser({ inputs: GroupInputs, args: this.args )
+      ParsedGroups[GroupIndex].inputs = ParsedGroupInputs
     }
                
     return ParsedGroups
