@@ -1,3 +1,5 @@
+import CommandInteraction from './command.js'
+
 class Interaction {
   constructor(command, player, message, args) {
     this.command = new CommandInteraction(command)
