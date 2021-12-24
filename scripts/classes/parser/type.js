@@ -1,6 +1,6 @@
 import { World } from 'mojang-minecraft'
 
-export default class typeParser {
+export default class CommandTypeParser {
   constructor() {}
   
   toString(value) {
