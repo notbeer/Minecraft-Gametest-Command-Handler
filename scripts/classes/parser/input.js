@@ -16,6 +16,14 @@ export default class CommandInputsParser {
       if(Input.required && !playerInput)
         throw new Error(`input for ${Input.name} is required!`)
      
+      /*
+        alternitave:
+        for(const type of CommandTypeParser.types) {
+           if(!playerInput) break
+           if(type.name != Input.name) continue;
+           playerInput = type.parse(playerInput)
+        }
+      */
       try {
         switch(Input.type) {
           case "string":
