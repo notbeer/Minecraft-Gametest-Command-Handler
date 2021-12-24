@@ -1,5 +1,5 @@
-import CommandGroupParser from './group.js'
-import CommandInputParser from './input.js'
+import CommandGroupsParser from './group.js'
+import CommandInputsParser from './input.js'
 
 export default class CommandParser {
   constructor({ command, args }) {
