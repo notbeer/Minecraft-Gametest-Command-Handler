@@ -3,23 +3,16 @@ import CommandBuilder from "../classes/builders/CommandBuilder.js";
 import CommandHandler from "../classes/CommandRegistration.js"
 
 const registration = new CommandBuilder()
-.setName('test')
-.setAliases(['t'])
-.setDescription('testing to see if the command handler works!')
-.setUsage(['this is a test!'])
-.setCancelMessage(false)
+.setName('help')
+.setAliases(['h'])
+.setDescription('get help on commands!')
+.setUsages(['help','help <command>'])
+.setCancelMessage(true)
+.setPrivate(false)
 .addInput(input => {
-  return input.setName('test1').setRequired(true).setType('string')
-})
-.addGroup(group => {
-  return group.setName('test2')
-  .addInput(input => {
-    return input.setName('test21').setRequired(true).setType('any')
-  })
+  return input.setName('command').setType('string').setDescription('command name you need help on!').setRequired(false)
 })
 
 CommandHandler.register(registration, (interaction) => {
-  Commands.run(`say ree:\n ${JSON.stringify(interaction?.command)}\n\n${JSON.stringify(interaction)}`, World.getDimension("overworld"))
-  const input = interaction.command.getInput('test1')
-  Commands.run("say this actually works! wow! input value" + input, World.getDimension("overworld"))
+  const commandName = interaction.command.getInput('command').getValue()
 })
