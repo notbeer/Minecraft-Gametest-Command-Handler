@@ -1,7 +1,26 @@
 import { World } from 'mojang-minecraft'
 
 export default class CommandTypeParserBuilder {
-  constructor() {}
+  constructor() {
+    this.types = [
+      {
+        name: 'string',
+        parse: (value) => this.toString(value)
+      },
+      {
+        name: 'int',
+        parse: (value) => this.toInt(value)
+      },
+      {
+        name: 'boolean',
+        parse: (value) => this.toBoolean(value)
+      },
+      {
+        name: 'player',
+        parse: (value) => this.toPlayer(value)
+      },
+    ]
+  }
   
   toString(value) {
     return value.toString()
