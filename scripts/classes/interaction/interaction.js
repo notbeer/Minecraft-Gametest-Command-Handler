@@ -1,6 +1,6 @@
 import CommandInteraction from './command.js'
 
-class Interaction {
+export default class Interaction {
   constructor(command, player, message, args) {
     this.command = new CommandInteraction(command)
     this.player = player
