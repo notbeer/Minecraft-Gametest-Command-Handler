@@ -1,7 +1,7 @@
 import Collection from './include/Collection.js';
 import event from './manager/EventEmitter.js'
 import CommandError from './error/command.js';
-import CommandInteraction from './interaction/command.js';
+import Interaction from './interaction/interaction.js';
 import CommandParser from './parser/command.js'
 
 class CustomCommand {
@@ -50,8 +50,7 @@ class CustomCommand {
             return
         }
         
-        const Interaction = new CommandInteraction(ParsedCommand, player, message, args)
-        event.emit('commandRan', Interaction)
+        event.emit('commandRan', new Interaction(ParsedCommand, player, message, args))
         
         command.callback(Interaction);
     };
