@@ -16,16 +16,14 @@ export default class CommandInputsParser {
       if(Input.required && !playerInput)
         throw new Error(`input for ${Input.name} is required!`)
      
-      /*
-        alternitave:
+      
+      try {
         for(const type of CommandTypeParser.types) {
            if(!playerInput || Input.type == 'any') break
            if(type.name != Input.type) continue;
            playerInput = type.parse(playerInput)
         }
-      */
-      try {
-        switch(Input.type) {
+        /*switch(Input.type) {
           case "string":
             if(!playerInput) break;
             playerInput = CommandTypeParser.toString(playerInput)
@@ -44,7 +42,7 @@ export default class CommandInputsParser {
             break;
           default:
             break;
-        }
+        }*/
       } catch(e) {
         throw new Error(`incorrect input type for ${Input.name}, input type must be a/an ${Input.type}`)
       }
