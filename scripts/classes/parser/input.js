@@ -7,7 +7,11 @@ export default class CommandInputsParser {
   }
   
   toParsedInputs() {
+    const ParsedInputs = []
     
+    for(const Input of this.inputs) {
+      let InputIndex = this.inputs.indexOf(Input)
+    }
     return ParsedInputs
   }
 }
