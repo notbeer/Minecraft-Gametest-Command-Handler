@@ -50,9 +50,10 @@ class CustomCommand {
             return
         }
         
-        event.emit('commandRan', new Interaction(ParsedCommand, player, message, args))
+        const interaction = new Interaction(ParsedCommand, player, message, args)
+        event.emit('commandRan', interaction)
         
-        command.callback(Interaction);
+        command.callback(interaction);
     };
 };
 
