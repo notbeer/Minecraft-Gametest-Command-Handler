@@ -10,7 +10,7 @@ export default class CommandGroupsParser {
     const groups = this.groups
     let ParsedGroups = []
     
-    groups.forEach(group => ParsedGroups.push({ ...group, ranByPlayer: this.args[0] === group.name }))
+    groups.forEach(group => ParsedGroups.push({ ...group, ranByPlayer: this.args[0] === group.name || group.aliases.includes(this.args[0]) }))
     
     for(const ParsedGroup of ParsedGroups) {
       const GroupIndex = ParsedGroups.indexOf(ParsedGroup)
