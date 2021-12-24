@@ -8,5 +8,6 @@ export default class CommandGroupsParser {
   
   toParsedGroups() {
     
+    return ParsedGroups
   }
 }
