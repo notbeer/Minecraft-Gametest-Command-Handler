@@ -19,8 +19,8 @@ export default class CommandInputsParser {
       /*
         alternitave:
         for(const type of CommandTypeParser.types) {
-           if(!playerInput) break
-           if(type.name != Input.name) continue;
+           if(!playerInput || Input.type == 'any') break
+           if(type.name != Input.type) continue;
            playerInput = type.parse(playerInput)
         }
       */
