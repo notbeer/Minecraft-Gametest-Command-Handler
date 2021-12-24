@@ -2,7 +2,7 @@ import Collection from './include/Collection.js';
 import EventEmitter from './manager/EventEmitter.js'
 import commandError from '../utils/commandError.js';
 import commandInteraction from './interaction/command.js';
-import commandParser from '../utils/commandParser.js'
+import CommandParser from './parser/command.js'
 
 class CustomCommand {
     constructor() {
@@ -42,13 +42,14 @@ class CustomCommand {
             });
         
         beforeChatPacket.cancel = command.cancelMessage
+        
         try {
-            const parsedCommand = new commandParser({ command, args, player })?.parsedCommand
-        } catch(e) {
-            return;
+            const ParsedCommand = new CommandParser({ command, args })
+        }  catch(e) {
+            new commandError({})
         }
         
-        const Interaction = new commandInteraction(parsedCommand, player, message, args)
+        const Interaction = new commandInteraction(ParsedCommand, player, message, args)
         event.emit('commandRan', Interaction)
         
         data.callback(Interaction);
