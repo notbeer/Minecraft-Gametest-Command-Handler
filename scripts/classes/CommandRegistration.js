@@ -1,6 +1,6 @@
 import Collection from './include/Collection.js';
 import EventEmitter from './manager/EventEmitter.js'
-import CommandError from '../utils/commandError.js';
+import CommandError from './error/command.js';
 import CommandInteraction from './interaction/command.js';
 import CommandParser from './parser/command.js'
 
