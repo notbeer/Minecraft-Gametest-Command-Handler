@@ -8,8 +8,8 @@ export default class CommandParser {
   }
   
   toParsedCommand() {
-    const ParsedGroups = new CommandGroupsParser({ groups: this.command.groups }).toParsedGroups()
-    const ParsedInputs = new CommandInputsParser({ inputs: this.command.inputs }).toParsedInputs()
+    const ParsedGroups = new CommandGroupsParser({ groups: this.command.groups, args: this.args }).toParsedGroups()
+    const ParsedInputs = new CommandInputsParser({ inputs: this.command.inputs, args: this.args }).toParsedInputs()
     const ParsedCommand = { ...this.command, inputs: ParsedInputs, groups: ParsedGroups }  
     
     return ParsedCommand
