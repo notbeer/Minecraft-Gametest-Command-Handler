@@ -1,14 +1,16 @@
 import CommandGroupParser from './group.js'
 import CommandInputParser from './input.js'
 
-export class CommandParser {
+export default class CommandParser {
   constructor({ command, args }) {
     this.command = command
     this.args = args
   }
   
   toParsedCommand() {
-    let ParsedCommand;
+    const ParsedGroups = new CommandGroupParser({ groups: this.command.groups }).toParsedGroups()
+    const ParsedInputs = new CommandInputParser({ inputs: this.command.inputs }).toParsedInputs()
+    const ParsedCommand = { ...this.command, inputs: ParsedInputs, groups: ParsedGroups }  
     
     return ParsedCommand
   }
