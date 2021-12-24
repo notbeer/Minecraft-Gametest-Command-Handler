@@ -7,7 +7,7 @@ export default class CommandGroupsParser {
   }
   
   toParsedGroups() {
-    const groups = this.command.groups
+    const groups = this.groups
     let ParsedGroups = []
     
     groups.forEach(group => ParsedGroups.push({ ...group, ranByPlayer: this.args[0] === group.name }))
