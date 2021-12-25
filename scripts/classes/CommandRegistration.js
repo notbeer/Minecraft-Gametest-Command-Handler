@@ -47,7 +47,7 @@ class CustomCommand {
             ParsedCommand = new CommandParser({ command, args }).toParsedCommand()
         }  catch(e) {
             new CommandError({ message: e.message, player })
-            return
+            return;
         }
         
         const interaction = new Interaction(ParsedCommand, player, message, args)
