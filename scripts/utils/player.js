@@ -1,6 +1,6 @@
 import { World, Commands } from 'mojang-minecraft'
 
-class player {
+export default class player {
   constructor(player) {
     this.mojang = player
   }
