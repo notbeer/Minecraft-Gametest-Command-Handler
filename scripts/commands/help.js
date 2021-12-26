@@ -20,8 +20,9 @@ CommandHandler.register(registration, (interaction) => {
     let message = `smt\n`
     switch (playerInput == undefined || playerInput == null) {
       case true:
-        const Command = CommandHandler.get(playerInput)
-        message +=
+        const command = CommandHandler.get(playerInput)
+        message += command.private ? `§c${playerInput} was not found...` : `${command.name}:\n description: ${command.description}\n usage: ${command.usage}\n cooldown: ${command.cooldown}`
+        
         break;
       case false:
         break;
