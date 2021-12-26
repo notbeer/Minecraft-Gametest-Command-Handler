@@ -26,7 +26,8 @@ CommandHandler.register(registration, (interaction) => {
   })
   
   Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`, World.getDimension('overworld'))
-  catch(e) {
-    Commands.run(`say ${e} at ${e.stack}`, World.getDimension('overworld'))
+}
+ catch(e) {
+   Commands.run(`say ${e} at ${e.stack}`, World.getDimension('overworld'))
   }
 })
