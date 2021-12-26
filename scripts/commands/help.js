@@ -14,21 +14,21 @@ const registration = new CommandBuilder()
 })
 
 CommandHandler.register(registration, (interaction) => {
-  try {   
-  const playerInput = interaction.command.getInput('command')?.getValue()
-  if(playerInput && !CommandHandler.getCommand(playerInput))
-    return Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: `${playerInput} was not found...` } ] })}`, World.getDimension('overworld'))
-  
-  const commands = playerInput ? [CommandHandler.getCommand(playerInput)] : CommandHandler.getAllCommands()
-  let message = `CommandPrefix: ${CommandHandler.getPrefix()}\n`
-  
-  commands.forEach(command => {
-    message += `${command.name}: ${JSON.stringify(command)}\n\n`
-  })
-  
-  Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`, World.getDimension('overworld'))
-}
- catch(e) {
-   Commands.run(`say ${e} at ${e.stack}`, World.getDimension('overworld'))
+  try {
+    const playerInput = interaction.command.getInput('command')?.getValue()
+    
+    let message = `smt\n`
+    switch (playerInput == undefined || playerInput == null) {
+      case true:
+        const Command = CommandHandler.get(playerInput)
+        message +=
+        break;
+      case false:
+        break;
+      default:
+        break;
+    }
+  } catch(e) {
+    
   }
 })
