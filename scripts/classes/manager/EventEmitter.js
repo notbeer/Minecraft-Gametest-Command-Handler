@@ -1,4 +1,5 @@
 import { World } from 'mojang-minecraft'
+import player from '../../utils/player.js'
 import CommandHandler from '../CommandRegistration.js'
 
 export const EventEmitter = class Class {
@@ -136,4 +137,7 @@ export const EventEmitter = class Class {
 
 const event = new EventEmitter()
 
+World.events.beforeChat.subscribe(beforeChatPacket => {
+    event.emit('beforeChat', { ...beforeChatPacket, sender: new player(beforeChatPacket.sender) })
+})
 export default event
