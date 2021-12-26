@@ -21,13 +21,13 @@ CommandHandler.register(registration, (interaction) => {
     switch (playerInput == undefined || playerInput == null) {
       case true:
         const command = CommandHandler.get(playerInput)
-        message += command.private ? `§c${playerInput} was not found...` : () => {
-        
-        }
-        //`${command.name}:\n description: ${command.description}\n usage: ${command.usage}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}\n inputs: `
-        
+        message += command.private ? `§c${playerInput} was not found...` : `${command.name}:\n description: ${command.description}\n usage: ${command.usage}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}`
         break;
       case false:
+        const commands = CommandHandler.getAllCommands()
+        for(const command of commands) {
+          
+        }
         break;
       default:
         break;
