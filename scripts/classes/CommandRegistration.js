@@ -49,7 +49,6 @@ class CustomCommand {
         
         beforeChatPacket.cancel = true
         const args = message.slice(this.prefix.length).trim().match(/(".*?"|[^"\s]+)+(?=\s*|\s*$)/g)
-        //const args = message.slice(this.prefix.length).trim().split(/\s+/);
         
         const commandName = args.shift().toLowerCase();
         const command = this.getCommand(commandName);
