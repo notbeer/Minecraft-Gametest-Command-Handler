@@ -14,6 +14,7 @@ const registration = new CommandBuilder()
 })
 
 CommandHandler.register(registration, (interaction) => {
+  try {   
   const playerInput = interaction.command.getInput('command')?.getValue()
   if(playerInput && !CommandHandler.getCommand(playerInput))
     return Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: `${playerInput} was not found...` } ] })}`, World.getDimension('overworld'))
