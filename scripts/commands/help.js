@@ -22,9 +22,11 @@ CommandHandler.register(registration, (interaction) => {
   let message = `CommandPrefix: ${CommandHandler.getPrefix()}\n`
   
   commands.forEach(command => {
-    const cmdInfo = command.registration
-    message += `${cmdInfo.name}: ${JSON.stringify(cmdInfo)}\n`
+    message += `${command.name}: ${JSON.stringify(command)}\n`
   })
   
   Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`, World.getDimension('overworld'))
+  catch(e) {
+    Commands.run(`say ${e} at ${e.stack}`, World.getDimension('overworld'))
+  }
 })
