@@ -13,22 +13,20 @@ class CustomCommand {
         World.events.beforeChat.subscribe(beforeChatPacket => this.exec(beforeChatPacket))
     };
     
-    loadDefaultCommands() {}
-    
-    _getCommand(command) {
+    getCommand(command) {
         const cmd = command.toLowerCase();
         return this.commands.get(cmd) || this.commands.find(v => v.aliases?.includes(cmd));
     };
     
-    _getAllCommands() {
+    getAllCommands() {
         return this.commands
     }
     
-    _getPrefix() {
+    getPrefix() {
         return this.prefix
     }
     
-    _setPrefix(value) {
+    setPrefix(value) {
         this.prefix = value
     }
     
@@ -54,7 +52,7 @@ class CustomCommand {
         //const args = message.slice(this.prefix.length).trim().split(/\s+/);
         
         const commandName = args.shift().toLowerCase();
-        const command = this._getCommand(commandName);
+        const command = this.getCommand(commandName);
         if (!command) {
             new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player, });
             return;
