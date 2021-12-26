@@ -1,5 +1,4 @@
 import { World } from 'mojang-minecraft'
-import player from '../utils/player.js'
 import Collection from './include/Collection.js';
 import event from './manager/EventEmitter.js'
 import CommandError from './error/command.js';
