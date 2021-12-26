@@ -1,3 +1,4 @@
+import { World } from 'mojang-minecraft'
 import Collection from './include/Collection.js';
 import event from './manager/EventEmitter.js'
 import CommandError from './error/command.js';
@@ -9,11 +10,13 @@ class CustomCommand {
         this.prefix = "+";
         this.cooldown = new Map();
         this.commands = new Collection();
+        World.events.beforeChat.subscribe(beforeChatPacket => this.exec(beforeChatPacket))
     };
+    
+    loadDefaultCommands() {}
     
     _getCommand(command) {
         const cmd = command.toLowerCase();
-        //return this.commands.find(elm => elm?.name === cmd || elm.aliases?.includes(cmd));
         return this.commands.get(cmd) || this.commands.find(v => v.aliases?.includes(cmd));
     };
     
@@ -25,8 +28,8 @@ class CustomCommand {
         return this.prefix
     }
     
-    _setPrefix(new) {
-        this.prefix = new
+    _setPrefix(value) {
+        this.prefix = value
     }
     
     register(registration, callback) {
@@ -35,6 +38,11 @@ class CustomCommand {
             callback
         });
     };
+    
+    triggerCommand(command, interaction) {
+        this._getCommand(command).callBack(interaction)
+    }
+    
     
     exec(beforeChatPacket) {
         let { message, sender: player } = beforeChatPacket
