@@ -39,7 +39,7 @@ export class CommandTypeParserBuilder {
   
   toPlayer(value) {
     const player = World.getPlayers().find(player => player.name == value || player.nameTag == value)
-    if(!value) throw new Error(`${value} is not a player who is online`) 
+    if(!player) throw new Error(`${value} is not a player who is online`) 
     return player
   }
 }
