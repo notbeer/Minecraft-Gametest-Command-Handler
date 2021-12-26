@@ -7,6 +7,7 @@ export default class CommandBuilder {
         this.usages = [];
         this.inputs = [];
         this.groups = [];
+        this.requiredTags = []
         this.cancelMessage = false
         this.private = false
     }
@@ -22,6 +23,11 @@ export default class CommandBuilder {
         return this;
     }
     ;
+    
+    setRequiredTags(value) {
+        this.requiredTags = [...value]
+    }
+    
     setName(value) {
         validateString(value, true);
         this.name = value;
