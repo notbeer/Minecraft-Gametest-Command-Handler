@@ -17,7 +17,7 @@ CommandHandler.register(registration, (interaction) => {
   try {
     const playerInput = interaction.command.getInput('command')?.getValue()
     
-    let message = `Command Prefix: ${CommandHandler.getCommand(playerInput)}\n`
+    let message = `Command Prefix: ${CommandHandler.getPrefix()}\n`
     switch (!!playerInput) {
       case true:
         const command = CommandHandler.get(playerInput)
