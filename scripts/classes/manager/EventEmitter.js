@@ -136,9 +136,4 @@ export const EventEmitter = class Class {
 
 const event = new EventEmitter()
 
-World.events.beforeChat.subscribe(beforeChat => {
-    event.emit('beforeChat', beforeChat)
-    CommandHandler.exec(beforeChat)
-})
-
 export default event
