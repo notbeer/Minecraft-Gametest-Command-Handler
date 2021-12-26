@@ -38,7 +38,7 @@ class CustomCommand {
     };
     
     triggerCommand(command, interaction) {
-        this._getCommand(command).callBack(interaction)
+        this.getCommand(command).callBack(interaction)
     }
     
     
