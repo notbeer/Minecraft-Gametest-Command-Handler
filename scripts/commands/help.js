@@ -19,11 +19,11 @@ CommandHandler.register(registration, (interaction) => {
   if(playerInput && !CommandHandler.getCommand(playerInput))
     return Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: `${playerInput} was not found...` } ] })}`, World.getDimension('overworld'))
   
-  const commands = playerInput ? CommandHandler.getCommand(playerInput) : CommandHandler.getAllCommands()
+  const commands = playerInput ? [CommandHandler.getCommand(playerInput)] : CommandHandler.getAllCommands()
   let message = `CommandPrefix: ${CommandHandler.getPrefix()}\n`
   
   commands.forEach(command => {
-    message += `${command.name}: ${JSON.stringify(command)}\n`
+    message += `${command.name}: ${JSON.stringify(command)}\n\n`
   })
   
   Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`, World.getDimension('overworld'))
