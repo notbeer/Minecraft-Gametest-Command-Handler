@@ -16,9 +16,15 @@ const registration = new CommandBuilder()
 CommandHandler.register(registration, (interaction) => {
   const playerInput = interaction.command.getInput('command')?.getValue()
   if(playerInput && !CommandHandler.getCommand(playerInput))
-    return Commands.run(`${playerInput} was not found...`)
+    return Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: '${playerInput} was not found...' } ] })}`, World.getDimension('overworld'))
   
-  const command = playerInput ? CommandHandler.getCommand(playerInput) : CommandHandler.getAllCommands()
-  let message = ``
+  const commands = playerInput ? CommandHandler.getCommand(playerInput) : CommandHandler.getAllCommands()
+  let message = `CommandPrefix: ${CommandHandler.getPrefix()}\n`
   
+  commands.forEach(command => {
+    const cmdInfo = command.registration
+    message += `${cmdInfo.name}: ${JSON.stringify(cmdInfo)}\n`
+  })
+  
+  Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`, World.getDimension('overworld'))
 })
