@@ -21,5 +21,5 @@ const registration = new CommandBuilder()
 CommandHandler.register(registration, (interaction) => {
   const input = interaction.command?.getInput('test1')?.getValue()
   const groupInput = interaction.command?.getGroup('test2')?.getInput('test21')?.getValue()
-  Commands.run(`say :\ninput test2: ${input}\ninputGroup: ${groupInput}` + input, World.getDimension("overworld"))
+  Commands.run(`say :\ninput test2: ${input}\ninputGroup: ${groupInput}`, World.getDimension("overworld"))
 })
