@@ -14,6 +14,11 @@ const registration = new CommandBuilder()
 })
 
 CommandHandler.register(registration, (interaction) => {
-  const command = interaction.command.getInput('command')?.getValue()
+  const playerInput = interaction.command.getInput('command')?.getValue()
+  if(playerInput && !CommandHandler.getCommand(playerInput))
+    return Commands.run(`${playerInput} was not found...`)
+  
+  const command = playerInput ? CommandHandler.getCommand(playerInput) : CommandHandler.getAllCommands()
+  let message = ``
   
 })
