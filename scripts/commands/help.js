@@ -20,7 +20,7 @@ CommandHandler.register(registration, (interaction) => {
     let message = `Command Prefix: ${CommandHandler.getPrefix()}\n`
     switch (!!playerInput) {
       case true:
-        const command = CommandHandler.get(playerInput)
+        const command = CommandHandler.getCommand(playerInput)
         message += command.private ? `§c${playerInput} was not found...` : `${command.name}:\n description: ${command.description}\n usage: ${command.usage}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}`
         break;
       case false:
