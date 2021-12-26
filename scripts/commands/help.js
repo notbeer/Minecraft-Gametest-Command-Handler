@@ -26,12 +26,15 @@ CommandHandler.register(registration, (interaction) => {
       case false:
         const commands = CommandHandler.getAllCommands()
         for(const command of commands) {
-          
+          if(command.private) continue
+          message += `${command.name}:\n description: ${command.description}\n usage: ${command.usage}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}\n\n`
         }
         break;
       default:
         break;
     }
+    
+    Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`, World.getDimension("overworld"))
   } catch(e) {
     
   }
