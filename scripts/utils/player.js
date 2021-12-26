@@ -1,1 +1,20 @@
+import { World, Commands } from 'mojang-minecraft'
 
+class player {
+  constructor(player) {
+    this.mojang = player
+  }
+  
+  getTags() {
+    const tag_data = Commands.run(`tag "${this.mojang.nameTag}" list`, World.getDimension('overworld'))
+    if(!tag_data) return []
+    
+  }
+  hasTag(tag) {
+    return this.getTags().includes(tag)
+  }
+  
+  hasAllTags({ tags }) {
+    return tags.every(tag => this.hasTag(tag))
+  }
+}
