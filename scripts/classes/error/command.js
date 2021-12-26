@@ -8,9 +8,7 @@ export default class CommandError {
   }
   
   sendErrorMessage() {
-    const name = this.player.nameTag;
-    const command = `tellraw "${name}" ${JSON.stringify({ rawtext: [ { text: this.message } ] })}`
+    const command = `tellraw "${this.player}" ${JSON.stringify({ rawtext: [ { text: this.message } ] })}`
     Commands.run(command, World.getDimension('overworld'))
-    //return new Error(`this.message at command: ${this.command?.name}`)
   }
 }
