@@ -25,7 +25,7 @@ CommandHandler.register(registration, (interaction) => {
         break;
       case false:
         const commands = CommandHandler.getAllCommands()
-        for(const [key, value] of commands) {
+        for(const [key, command] of commands) {
           if(command.private) continue
           message += `${command.name}:\n description: ${command.description}\n usage: ${command.usages}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}\n\n`
         }
