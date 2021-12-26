@@ -6,7 +6,7 @@ const registration = new CommandBuilder()
 .setName('help')
 .setAliases(['h'])
 .setDescription('get help on commands!')
-.setUsage(['help','help <command>'])
+.setUsage(['help', 'help <command>'])
 .setCancelMessage(true)
 .setPrivate(false)
 .addInput(input => {
@@ -14,6 +14,6 @@ const registration = new CommandBuilder()
 })
 
 CommandHandler.register(registration, (interaction) => {
-  const commandName = interaction.command.getInput('command').getValue()
-  //do rest later 
+  const command = interaction.command.getInput('command')?.getValue()
+  
 })
