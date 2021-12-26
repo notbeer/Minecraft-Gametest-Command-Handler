@@ -11,7 +11,7 @@ class CustomCommand {
         this.prefix = "+";
         this.cooldown = new Map();
         this.commands = new Collection();
-        World.events.beforeChat.subscribe(beforeChatPacket => this.exec(beforeChatPacket))
+        event.on('beforeChat', beforeChatPacket => this.exec(beforeChatPacket))
     };
     
     getCommand(command) {
