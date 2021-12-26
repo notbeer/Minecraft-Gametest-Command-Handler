@@ -7,9 +7,12 @@ class player {
   
   getTags() {
     const tag_data = Commands.run(`tag "${this.mojang.nameTag}" list`, World.getDimension('overworld'))
-    if(!tag_data) return []
+    if(!tag_data.statusMessage) return []
     
+    let tags = data.statusMessage.match(/(?<=: ).*$/)
+    return tags[0].split('§r, §a') 
   }
+  
   hasTag(tag) {
     return this.getTags().includes(tag)
   }
