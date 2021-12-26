@@ -11,11 +11,23 @@ class CustomCommand {
         this.commands = new Collection();
     };
     
-    _get(command) {
+    _getCommand(command) {
         const cmd = command.toLowerCase();
         //return this.commands.find(elm => elm?.name === cmd || elm.aliases?.includes(cmd));
         return this.commands.get(cmd) || this.commands.find(v => v.aliases?.includes(cmd));
     };
+    
+    _getAllCommands() {
+        return this.commands
+    }
+    
+    _getPrefix() {
+        return this.prefix
+    }
+    
+    _setPrefix(new) {
+        this.prefix = new
+    }
     
     register(registration, callback) {
         this.commands.set(registration.name.toLowerCase(), {
@@ -34,7 +46,7 @@ class CustomCommand {
         //const args = message.slice(this.prefix.length).trim().split(/\s+/);
         
         const commandName = args.shift().toLowerCase();
-        const command = this._get(commandName);
+        const command = this._getCommand(commandName);
         if (!command) {
             new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player, });
             return;
