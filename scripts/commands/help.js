@@ -17,8 +17,8 @@ CommandHandler.register(registration, (interaction) => {
   try {
     const playerInput = interaction.command.getInput('command')?.getValue()
     
-    let message = `smt\n`
-    switch (playerInput == undefined || playerInput == null) {
+    let message = `Command Prefix: ${CommandHandler.getCommand(playerInput)}\n`
+    switch (!!playerInput) {
       case true:
         const command = CommandHandler.get(playerInput)
         message += command.private ? `§c${playerInput} was not found...` : `${command.name}:\n description: ${command.description}\n usage: ${command.usage}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}`
