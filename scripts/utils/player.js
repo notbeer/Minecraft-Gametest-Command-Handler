@@ -8,7 +8,7 @@ class playerBuilder {
     const tag_data = Commands.run(`tag "${name}" list`, World.getDimension('overworld'))
     if(!tag_data?.statusMessage) return []
     
-    let tags = data.statusMessage.match(/(?<=: ).*$/)
+    let tags = tag_data.statusMessage.match(/(?<=: ).*$/)
     return tags[0].split('§r, §a') 
   }
   
