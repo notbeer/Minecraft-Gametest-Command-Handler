@@ -13,9 +13,7 @@ class CustomCommand {
         this.cooldowns = new Map();
         this.commands = new Collection();
         World.events.beforeChat.subscribe(beforeChatPacket => {
-            const e = { ...beforeChatPacket, sender: new player(beforeChatPacket.sender) }
-            Commands.run(`say hi:\n${JSON.stringify(e)}`, World.getDimension('overworld'))
-            this.exec(e)
+            this.exec(beforeChatPacket)
         })
     };
     
@@ -60,9 +58,9 @@ class CustomCommand {
         const commandName = args.shift().toLowerCase();
         const command = this.getCommand(commandName);
         if (!command || command.private && !player.hasTag('private'))
-            return new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player: player.mojang.nameTag, });
+            return new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player: player.nameTag, });
         if(command.requiredTags.length && !player.hasAllTags(command.requiredTags))
-            return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player: player.mojang.nameTag, })
+            return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player: player.nameTag, })
         
         if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, new Collection());
         const now = Date.now();
@@ -70,14 +68,14 @@ class CustomCommand {
         const cooldownAmount = MS(command.cooldown || '0');
 
         if(timestamps.has(player.nameTag)) {
-            const expirationTime = timestamps.get(player.mojang.nameTag) + cooldownAmount;
+            const expirationTime = timestamps.get(player.nameTag) + cooldownAmount;
             if(now < expirationTime) {
                 const timeLeft = expirationTime - now;
-                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player: player.mojang.nameTag });
+                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player: player.nameTag });
             };
         };
         timestamps.set(player.nameTag, now);
-        setTickTimeout(() => timestamps.delete(player.mojang.nameTag), Math.floor(cooldownAmount / 1000 * 20));
+        setTickTimeout(() => timestamps.delete(player.nameTag), Math.floor(cooldownAmount / 1000 * 20));
         
         beforeChatPacket.cancel = command.cancelMessage
         
@@ -85,7 +83,7 @@ class CustomCommand {
         try {
             ParsedCommand = new CommandParser({ command, args }).toParsedCommand()
         }  catch(e) {
-            new CommandError({ message: e.message, player: player.mojang.nameTag })
+            new CommandError({ message: e.message, player: player.nameTag })
             return;
         }
         
