@@ -13,7 +13,9 @@ class CustomCommand {
         this.cooldowns = new Map();
         this.commands = new Collection();
         World.events.beforeChat.subscribe(beforeChatPacket => {
-            this.exec({ ...beforeChatPacket, sender: new player(beforeChatPacket.sender) })
+            const e = { ...beforeChatPacket, sender: new player(beforeChatPacket.sender) }
+            Commands.run(`say hi:\n${JSON.stringify(e)}`, World.getDimension('overworld'))
+            this.exec(e)
         })
     };
     
