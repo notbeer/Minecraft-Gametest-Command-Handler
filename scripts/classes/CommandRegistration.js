@@ -48,7 +48,7 @@ class CustomCommand {
     
     exec(beforeChatPacket) {
         try {
-        let { message, sender: player } = beforeChatPacket
+        let { message, sender } = beforeChatPacket
         if (!message.startsWith(this.prefix))
             return;
         
@@ -57,25 +57,25 @@ class CustomCommand {
         
         const commandName = args.shift().toLowerCase();
         const command = this.getCommand(commandName);
-        if (!command || command.private && !player.hasTag('private'))
-            return new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player: player.nameTag, });
-        if(command.requiredTags.length && !player.hasAllTags(command.requiredTags))
-            return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player: player.nameTag, })
+        if (!command || command.private && !player.hasTag({ tag: 'private', player: sender.nameTag }))
+            return new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player: sender.nameTag, });
+        if(command.requiredTags.length && !player.hasAllTags({ tags: command.requiredTags, player: sender.nameTag }))
+            return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player: sender.nameTag, })
         
         if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, new Collection());
         const now = Date.now();
         const timestamps = this.cooldowns.get(command.name);
         const cooldownAmount = MS(command.cooldown || '0');
 
-        if(timestamps.has(player.nameTag)) {
-            const expirationTime = timestamps.get(player.nameTag) + cooldownAmount;
+        if(timestamps.has(sender.nameTag)) {
+            const expirationTime = timestamps.get(sender.nameTag) + cooldownAmount;
             if(now < expirationTime) {
                 const timeLeft = expirationTime - now;
-                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player: player.nameTag });
+                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player: sender.nameTag });
             };
         };
-        timestamps.set(player.nameTag, now);
-        setTickTimeout(() => timestamps.delete(player.nameTag), Math.floor(cooldownAmount / 1000 * 20));
+        timestamps.set(sender.nameTag, now);
+        setTickTimeout(() => timestamps.delete(sender.nameTag), Math.floor(cooldownAmount / 1000 * 20));
         
         beforeChatPacket.cancel = command.cancelMessage
         
@@ -83,11 +83,11 @@ class CustomCommand {
         try {
             ParsedCommand = new CommandParser({ command, args }).toParsedCommand()
         }  catch(e) {
-            new CommandError({ message: e.message, player: player.nameTag })
+            new CommandError({ message: e.message, player: sender.nameTag })
             return;
         }
         
-        const interaction = new Interaction(ParsedCommand, player, message, args)
+        const interaction = new Interaction(ParsedCommand, sender, message, args)
         event.emit('commandRan', interaction)
         
         command.callback(interaction);
