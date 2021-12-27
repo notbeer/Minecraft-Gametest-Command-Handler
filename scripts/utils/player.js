@@ -15,7 +15,13 @@ class playerBuilder {
   }
   
   hasTag({ tag, name }) {
-    return this.getTags({ name }).includes(tag)
+    const allTags = this.getTags({ name });
+        if (!allTags)
+            return false;
+        for (const Tag of allTags)
+            if (Tag.replace(/§./g, '').match(new RegExp(`^${tag.replace(/§./g, '')}$`)))
+                return true;
+        return false;
   }
   
   hasAllTags({ name, tags }) {
