@@ -26,6 +26,7 @@ export default class CommandBuilder {
     
     setRequiredTags(value) {
         this.requiredTags = [...value]
+        return this
     }
     
     setName(value) {
