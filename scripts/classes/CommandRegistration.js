@@ -56,7 +56,7 @@ class CustomCommand {
         
         const commandName = args.shift().toLowerCase();
         const command = this.getCommand(commandName);
-        if (!command || command.private && !player.hasTag({ name: player.nameTag, tag: 'private' }))
+        if (!command || command.private && !player.hasTag('private'))
             return new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player: player.nameTag, });
         if(command.requiredTags.length && !player.hasAllTags(command.requiredTags))
             return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player: player.nameTag, })
