@@ -7,6 +7,7 @@ const registration = new CommandBuilder()
 .setAliases(['t'])
 .setDescription('testing to see if the command handler works!')
 .setUsage(['this is a test!'])
+.setCooldown('20 seconds')
 .setCancelMessage(false)
 .addInput(input => {
   return input.setName('test1').setRequired(true).setType('string')
