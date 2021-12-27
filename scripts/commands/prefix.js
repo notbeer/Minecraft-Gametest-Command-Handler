@@ -17,7 +17,7 @@ const registration = new CommandBuilder()
 })
 
 CommandHandler.register(registration, (interaction) => {
-  const newPrefix = interaction.command.getGroup('set').getInput('new prefix')?.getValue()
+  const newPrefix = interaction.command.getGroup('set')?.getInput('new prefix')?.getValue()
   
   switch(!!newPrefix) {
     case true:
