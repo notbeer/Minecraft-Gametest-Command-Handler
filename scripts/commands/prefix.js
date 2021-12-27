@@ -17,4 +17,17 @@ const registration = new CommandBuilder()
 })
 
 CommandHandler.register(registration, (interaction) => {
+  const newPrefix = interaction.command.getGroup('set').getInput('new prefix')?.getValue()
+  
+  switch(!!newPrefix) {
+    case true:
+      CommandHandler.setPrefix(newPrefix)
+      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'prefix has been changed to' + newPrefix }]})}`, World.getDimension('overworld'))
+      break;
+    case false:
+      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'the current prefix is' + CommandHandler.getPrefix() }]})}`, World.getDimension('overworld'))
+      break;
+    default:
+      break;
+  }
 })
