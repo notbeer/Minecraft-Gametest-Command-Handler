@@ -10,7 +10,7 @@ const registration = new CommandBuilder()
 .setCancelMessage(true)
 .setPrivate(false)
 .addInput(input => {
-  return input.setName('command').setType('string').setDescription('command name you need help on!').setRequired(false)
+  return input.setName('command').setType('string').setDescription('command name you need help on!')
 })
 
 CommandHandler.register(registration, (interaction) => {
