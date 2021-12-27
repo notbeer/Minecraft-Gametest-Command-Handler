@@ -5,6 +5,7 @@ import event from './manager/EventEmitter.js'
 import CommandError from './error/command.js';
 import Interaction from './interaction/interaction.js';
 import CommandParser from './parser/command.js'
+import MS from '../utils/ms.js'
 import { setTickTimeout } from '../utils/scheduling.js';
 
 class CustomCommand {
