@@ -63,6 +63,16 @@ class CustomCommand {
         if(command.requiredTags.length && !player.hasAllTags({ tags: command.requiredTags, player: sender.nameTag }))
             return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player: sender.nameTag, })
         
+        beforeChatPacket.cancel = command.cancelMessage
+        
+        let ParsedCommand;
+        try {
+            ParsedCommand = new CommandParser({ command, args }).toParsedCommand()
+        }  catch(e) {
+            new CommandError({ message: e.message, player: sender.nameTag })
+            return;
+        }
+        
         if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, new Collection());
         const now = Date.now();
         const timestamps = this.cooldowns.get(command.name);
@@ -75,19 +85,9 @@ class CustomCommand {
                 return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player: sender.nameTag });
             };
         };
+            
         timestamps.set(sender.nameTag, now);
         setTickTimeout(() => timestamps.delete(sender.nameTag), Math.floor(cooldownAmount / 1000 * 20));
-        
-        beforeChatPacket.cancel = command.cancelMessage
-        
-        let ParsedCommand;
-        try {
-            ParsedCommand = new CommandParser({ command, args }).toParsedCommand()
-        }  catch(e) {
-            new CommandError({ message: e.message, player: sender.nameTag })
-            return;
-        }
-        
         const interaction = new Interaction(ParsedCommand, sender, message, args)
         event.emit('commandRan', interaction)
         
