@@ -58,6 +58,20 @@ class CustomCommand {
         if(command.requiredTags.length && !player.hasAllTags(command.requiredTags))
             return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player.nameTag, })
         
+        if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, new Collection());
+        const now = Date.now();
+        const timestamps = this.cooldowns.get(command.name);
+        const cooldownAmount = MS(command.cooldown || '0');
+
+        if(timestamps.has(player.nameTag)) {
+            const expirationTime = timestamps.get(player.nameTag) + cooldownAmount;
+            if(now < expirationTime) {
+                const timeLeft = expirationTime - now;
+                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player.nameTag });
+            };
+        };
+        timestamps.set(player.nameTag, now);
+        setTickTimeout(() => timestamps.delete(player.nameTag), Math.floor(cooldownAmount / 1000 * 20));
         
         beforeChatPacket.cancel = command.cancelMessage
         
@@ -73,21 +87,6 @@ class CustomCommand {
         event.emit('commandRan', interaction)
         
         command.callback(interaction);
-        
-        if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, new Collection());
-        const now = Date.now();
-        const timestamps = this.cooldowns.get(command.name);
-        const cooldownAmount = MS(command.cooldown || '0');
-
-        if(timestamps.has(player.nameTag)) {
-            const expirationTime = timestamps.get(player.nameTag) + cooldownAmount;
-            if(now < expirationTime) {
-                const timeLeft = expirationTime - now;
-                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player.nameTag });
-            };
-        };
-        timestamps.set(player.nameTag, now);
-        setTickTimeout(() => timestamps.delete(player.nameTag), Math.floor(cooldownAmount / 1000 * 20));
     };
 };
 
