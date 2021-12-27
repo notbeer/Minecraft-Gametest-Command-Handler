@@ -4,11 +4,12 @@ import event from './manager/EventEmitter.js'
 import CommandError from './error/command.js';
 import Interaction from './interaction/interaction.js';
 import CommandParser from './parser/command.js'
+import { setTickTimeout } '../utils/scheduling.js';
 
 class CustomCommand {
     constructor() {
         this.prefix = "+";
-        this.cooldown = new Map();
+        this.cooldowns = new Map();
         this.commands = new Collection();
         event.on('beforeChat', beforeChatPacket => this.exec(beforeChatPacket))
     };
@@ -72,6 +73,21 @@ class CustomCommand {
         event.emit('commandRan', interaction)
         
         command.callback(interaction);
+        
+        if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, new Collection());
+        const now = Date.now();
+        const timestamps = this.cooldowns.get(command.name);
+        const cooldownAmount = MS(command.cooldown || '0');
+
+        if(timestamps.has(player.nameTag)) {
+            const expirationTime = timestamps.get(player.nameTag) + cooldownAmount;
+            if(now < expirationTime) {
+                const timeLeft = expirationTime - now;
+                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player.nameTag });
+            };
+        };
+        timestamps.set(player.nameTag, now);
+        setTickTimeout(() => timestamps.delete(player.nameTag), Math.floor(cooldownAmount / 1000 * 20));
     };
 };
 
