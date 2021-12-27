@@ -58,9 +58,9 @@ class CustomCommand {
         
         const commandName = args.shift().toLowerCase();
         const command = this.getCommand(commandName);
-        if (!command || command.private && !player.hasTag({ tag: 'private', player: sender.nameTag }))
+        if (!command || command.private && !player.hasTag({ tag: 'private', name: sender.nameTag }))
             return new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player: sender.nameTag, });
-        if(command.requiredTags.length && !player.hasAllTags({ tags: command.requiredTags, player: sender.nameTag }))
+        if(command.requiredTags.length && !player.hasAllTags({ tags: command.requiredTags, name: sender.nameTag }))
             return new CommandError({ message: `you do not have the required permissions to use ${commandName}! you must have all of these tags to execute the command: ${command.requiredTags}`, player: sender.nameTag, })
         
         beforeChatPacket.cancel = command.cancelMessage
