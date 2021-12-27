@@ -1,6 +1,6 @@
 import { World, Commands } from 'mojang-minecraft'
 
-export default class player {
+class playerBuilder {
   constructor() {
   }
   
@@ -20,3 +20,6 @@ export default class player {
     return tags.every(tag => this.hasTag({ name, tag }))
   }
 }
+
+const player = new playerBuilder()
+export default player
