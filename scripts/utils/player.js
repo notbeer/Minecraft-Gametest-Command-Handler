@@ -17,7 +17,7 @@ export default class player {
     return this.getTags().includes(tag)
   }
   
-  hasAllTags({ tags }) {
+  hasAllTags(tags) {
     return tags.every(tag => this.hasTag(tag))
   }
 }
