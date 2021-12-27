@@ -9,7 +9,7 @@ const registration = new CommandBuilder()
 .setUsage(['this is a test!'])
 .setCooldown('20 seconds')
 .setCancelMessage(false)
-.setPrivate('true')
+.setPrivate(true)
 .setRequiredTags(['ree'])
 .addInput(input => {
   return input.setName('test1').setRequired(true).setType('player')
