@@ -88,6 +88,7 @@ class CustomCommand {
             
         timestamps.set(sender.nameTag, now);
         setTickTimeout(() => timestamps.delete(sender.nameTag), Math.floor(cooldownAmount / 1000 * 20));
+            
         const interaction = new Interaction(ParsedCommand, sender, message, args)
         event.emit('commandRan', interaction)
         
