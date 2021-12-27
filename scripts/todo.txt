@@ -1,3 +1,0 @@
-1: make parser put the correct type of data values for inputs depending on the type of input
-2: way better error handling
-3: interaction callback
