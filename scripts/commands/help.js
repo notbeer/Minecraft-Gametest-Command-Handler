@@ -21,13 +21,13 @@ CommandHandler.register(registration, (interaction) => {
     switch (!!playerInput) {
       case true:
         const command = CommandHandler.getCommand(playerInput)
-        message += !command || command?.private ? `§c${playerInput} was not found...` : `${command.name}:\n description: ${command.description}\n usage: ${command.usages}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}`
+        message += !command || command?.private ? `§c${playerInput} was not found...` : `${command.name}:\n description: ${command.description}\n usage: ${command.usages ? command.usages : 'no usages were found' }\n aliases: ${command.aliases ? command.aliases : 'no aliases were found' }\n cooldown: ${command.cooldown ? command.cooldown : 'no cooldown was found!}`
         break;
       case false:
         const commands = CommandHandler.getAllCommands()
         for(const [key, command] of commands) {
           if(command.private) continue
-          message += `${command.name}:\n description: ${command.description}\n usage: ${command.usages}\n aliases: ${command.aliases}\n cooldown: ${command.cooldown}\n\n`
+          message += `${command.name}:\n description: ${command.description ? command.description : 'no description was found' }\n usage: ${command.usages ? command.usages : 'no usages were found' }\n aliases: ${command.aliases ? command.aliases : 'no aliases were found' }\n cooldown: ${command.cooldown ? command.cooldown : 'no cooldown was found' }\n\n`
         }
         break;
       default:
