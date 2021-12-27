@@ -12,7 +12,7 @@ const registration = new CommandBuilder()
 .setPrivte('true')
 .setRequiredTags(['ree'])
 .addInput(input => {
-  return input.setName('test1').setRequired(true).setType('string')
+  return input.setName('test1').setRequired(true).setType('player')
 })
 .addGroup(group => {
   return group.setName('test2')
