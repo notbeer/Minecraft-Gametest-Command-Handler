@@ -55,8 +55,8 @@ export default class CommandBuilder {
     }
     ;
     setCooldown(value) {
-        if (typeof value === 'string' && typeof value === 'number')
-            throw new Error('Value must be a string or number.');
+        if (typeof value !== 'string')
+            throw new Error('Value must be a string.');
         this.cooldown = value;
         return this;
     }
