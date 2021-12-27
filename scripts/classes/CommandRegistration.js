@@ -1,5 +1,6 @@
 import { World } from 'mojang-minecraft'
 import Collection from './include/Collection.js';
+import player from '../utils/player.js'
 import event from './manager/EventEmitter.js'
 import CommandError from './error/command.js';
 import Interaction from './interaction/interaction.js';
@@ -11,7 +12,9 @@ class CustomCommand {
         this.prefix = "+";
         this.cooldowns = new Map();
         this.commands = new Collection();
-        event.on('beforeChat', beforeChatPacket => this.exec(beforeChatPacket))
+        World.events.beforeChat.subscribe(beforeChatPacket => {
+            this.exec({ ...beforeChatPacket, sender: new player(beforeChatPacket.sender) })
+        })
     };
     
     getCommand(command) {
