@@ -159,7 +159,7 @@ class Table {
 			this.update(key, value)
 			let Table = this.getTable()
 			Table.data.push({
-				key: [...key],
+				key: typeof key == 'string' ? [key] : [...key],
 				value
 			})
 			this.updateTable(Table)
