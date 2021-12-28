@@ -68,7 +68,7 @@ We have also provided some custom commands for you in the pack to use an referen
 
 ## Getting Started
 
-First of all, create a new file in the commands folder, import the command handler class and builders and use the example command to guide you! Be sure add the command in the import file which is in the commands folder!
+First of all, create a new file in the commands folder, import the command handler class and builders and use the example command to guide you! Be sure to add the command in the import file which is in the commands folder!
 
 ### Example
 
