@@ -53,7 +53,11 @@
 
 ## About The Project
 
-  Advanced Command Handler is an efficient way to register custom command to your Minecraft Bedrock Edition world. This uses the latest scripting feature "Gametest". This pack makes it easy for you to make custom command, while adding a lot more possibilities to your custom command. The custom commands have built in cooldowns, description and a lot more other options. We have also provided custom commands for you in the pack to use an reference.
+  Advanced Command Handler is an efficient way to register custom command to your Minecraft Bedrock Edition world. This uses the latest scripting feature "Gametest". This pack makes it easy for you to make custom command, while adding a lot more possibilities to your custom command. The custom commands has built in:
+1: cooldowns
+2: ability to add inputs and groups
+3: and a bunch more!
+We have also provided some custom commands for you in the pack to use an reference.
 
 
 ### Built With
@@ -67,7 +71,7 @@
 
 ## Getting Started
 
-First of all, create a new file in the commands folder, import the command handler class and builders and use the example command to guide you! Be sure add import the command in the import file which is in the commands folder!
+First of all, create a new file in the commands folder, import the command handler class and builders and use the example command to guide you! Be sure add the command in the import file which is in the commands folder!
 
 ### Example
 
