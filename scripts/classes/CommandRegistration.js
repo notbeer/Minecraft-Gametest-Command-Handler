@@ -5,13 +5,14 @@ import event from './manager/EventEmitter.js'
 import CommandError from './error/command.js';
 import Interaction from './interaction/interaction.js';
 import CommandParser from './parser/command.js'
+import database from '../utils/database.js'
 import MS from '../utils/ms.js'
 import { setTickTimeout } from '../utils/scheduling.js';
 
 class CustomCommand {
     constructor() {
         this.prefix = "+";
-        this.cooldowns = new Map();
+        this.cooldowns = database.table('commandCooldowns')
         this.commands = new Collection();
         World.events.beforeChat.subscribe(beforeChatPacket => {
             this.exec(beforeChatPacket)
@@ -73,21 +74,19 @@ class CustomCommand {
             return;
         }
         
-        if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, new Collection());
+        if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, []);
         const now = Date.now();
-        const timestamps = this.cooldowns.get(command.name);
+        let timestamps = this.cooldowns.get(command.name).value
         const cooldownAmount = MS(command.cooldown || '0');
+        
+        let timestamp = timestamps.find(elm => elm?.player == sender.nameTag)
+        const expirationTime = timestamp ? timestamp?.cooldown + cooldownAmount : 0
+        if(now < expirationTime) 
+          return new CommandError({ message: `Please wait ${MS(expirationTime - now)} before reusing the "${commandName}" command.`, player: sender.nameTag });
 
-        if(timestamps.has(sender.nameTag)) {
-            const expirationTime = timestamps.get(sender.nameTag) + cooldownAmount;
-            if(now < expirationTime) {
-                const timeLeft = expirationTime - now;
-                return new CommandError({ message: `Please wait ${MS(timeLeft)} before reusing the "${commandName}" command.`, player: sender.nameTag });
-            };
-        };
-            
-        timestamps.set(sender.nameTag, now);
-        setTickTimeout(() => timestamps.delete(sender.nameTag), Math.floor(cooldownAmount / 1000 * 20));
+        !!timestamp ? timestamps[timestamps.indexOf(timestamp)] = { ...timestamp, cooldown: now } : timestamps.push({ player: sender.nameTag, cooldown: now })
+        
+        this.cooldowns.update(command.name, timestamps)
             
         const interaction = new Interaction(ParsedCommand, sender, message, args)
         event.emit('commandRan', interaction)
