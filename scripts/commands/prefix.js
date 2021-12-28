@@ -22,10 +22,10 @@ CommandHandler.register(registration, (interaction) => {
   switch(!!newPrefix) {
     case true:
       CommandHandler.setPrefix(newPrefix)
-      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'prefix has been changed to' + newPrefix }]})}`, World.getDimension('overworld'))
+      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'prefix has been changed to ' + newPrefix }]})}`, World.getDimension('overworld'))
       break;
     case false:
-      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'the current prefix is' + CommandHandler.getPrefix() }]})}`, World.getDimension('overworld'))
+      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'the current prefix is ' + CommandHandler.getPrefix() }]})}`, World.getDimension('overworld'))
       break;
     default:
       break;
