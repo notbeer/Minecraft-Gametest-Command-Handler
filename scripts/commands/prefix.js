@@ -12,12 +12,12 @@ const registration = new CommandBuilder()
 .setPrivate(false)
 .addGroup(group => {
   return group.setName('set').setAliases(['change']).setDescription('change the prefix').addInput(input => {
-    return input.setRequired(true).setType('string').setName('newPrefix')
+    return input.setRequired(true).setType('string').setName('newprefix')
   })
 })
 
 CommandHandler.register(registration, (interaction) => {
-  const newPrefix = interaction.command.getGroup('set')?.getInput('newPrefix')?.getValue()
+  const newPrefix = interaction.command.getGroup('set')?.getInput('newprefix')?.getValue()
   
   switch(!!newPrefix) {
     case true:
