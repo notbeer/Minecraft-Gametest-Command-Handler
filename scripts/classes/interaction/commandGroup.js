@@ -45,14 +45,14 @@ export default class CommandGroupInteraction {
   }
   
   getFilledInputs() {
-    const data = this.group?.inputs.filter(input => input.value != undefined)
+    const data = this.group?.inputs.filter(input => input.playerInput != undefined)
     const inputs = []
     data.forEach(filledInput => inputs.push(new CommandInputInteraction(filledInput)))
     return inputs
   }
   
   getNonFilledInputs() {
-    const data = this.group?.inputs.filter(input => input.value == undefined)
+    const data = this.group?.inputs.filter(input => input.playerInput == undefined)
     const inputs = []
     data.forEach(nonFilledInput => inputs.push(new CommandInputInteraction(nonFilledInput)))
     return inputs
