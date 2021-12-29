@@ -9,7 +9,7 @@ class playerBuilder {
     if(!tag_data?.statusMessage) return []
     
     let tags = tag_data.statusMessage.match(/(?<=: ).*$/)
-    if(!tags[0]) return []
+    if(!tags || !tags[0]) return []
     
     return tags[0].split('§r, §a') 
   }
