@@ -85,7 +85,7 @@ export default class CommandInteraction {
   
   getRanGroup() {
     const group = this.command?.groups.find(group => group.ranByPlayer)
-    return group
+    return new CommandGroupInteraction(group)
   }
   
   getNonRanGroups() {
