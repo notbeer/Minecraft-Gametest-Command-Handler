@@ -57,7 +57,7 @@ class CustomCommand {
         beforeChatPacket.cancel = true
         const args = message.slice(this.prefix.length).trim().match(/([^\s"]+|"[^"]*")+/g).map(v => /\s/.test(v) ? v.replace(/^"|"$/g, '') : v);
         
-        const commandName = args?.shift().toLowerCase();
+        const commandName = args?.shift()?.toLowerCase();
         const command = this.getCommand(commandName);
         if (!command || command.private && !player.hasTag({ tag: 'private', name: sender.nameTag }))
             return new CommandError({ message: `${commandName} is an invalid command! Use the help command to get a list of all the commands.`, player: sender.nameTag, });
