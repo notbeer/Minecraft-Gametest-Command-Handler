@@ -1,4 +1,3 @@
-
 import { World, Commands } from "mojang-minecraft"
 import CommandBuilder from "../classes/builders/CommandBuilder.js";
 import CommandHandler from "../classes/CommandRegistration.js"
@@ -10,6 +9,7 @@ const registration = new CommandBuilder()
 .setUsage(['prefix', 'prefix set <new prefix: string>'])
 .setCancelMessage(true)
 .setPrivate(false)
+.setRequiredTags(['staff'])
 .addGroup(group => {
   return group.setName('set').setAliases(['change']).setDescription('change the prefix').addInput(input => {
     return input.setRequired(true).setType('string').setName('newprefix')
