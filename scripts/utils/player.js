@@ -27,6 +27,15 @@ class playerBuilder {
   hasAllTags({ name, tags }) {
     return tags.every(tag => this.hasTag({ name, tag }))
   }
+  
+  exists({ name }) {
+    return World.getPlayers().some(player => player.nameTag == name || player.name == name)
+  }
+  
+  find({ name }) {
+    if(!this.exists({ name })) return
+    return World.getPlayers().find(player => player.nameTag == name || player.name == name)     
+  }
 }
 
 const player = new playerBuilder()
