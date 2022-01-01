@@ -20,7 +20,7 @@ class CustomCommand {
     };
     
     getCommand(command) {
-        const cmd = command.toLowerCase();
+        const cmd = command?.toLowerCase();
         return this.commands.get(cmd) || this.commands.find(v => v.aliases?.includes(cmd));
     };
     
