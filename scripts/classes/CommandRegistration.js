@@ -55,7 +55,7 @@ class CustomCommand {
             return;
         
         beforeChatPacket.cancel = true
-        const args = message.slice(this.prefix.length).trim().match(/([^\s"]+|"[^"]*")+/g).map(v => /\s/.test(v) ? v.replace(/^"|"$/g, '') : v);
+        const args = message.slice(this.prefix.length).trim().match(/([^\s"]+|"[^"]*")+/g)?.map(v => /\s/.test(v) ? v.replace(/^"|"$/g, '') : v);
         
         const commandName = args?.shift()?.toLowerCase();
         const command = this.getCommand(commandName);
