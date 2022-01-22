@@ -75,7 +75,7 @@ class CustomCommand {
         }
         
         if(!this.cooldowns.has(command.name)) this.cooldowns.set(command.name, []);
-        const now = Date.now();
+        const now = new Date().getTime();
         let timestamps = this.cooldowns.get(command.name).value
         const cooldownAmount = MS(command.cooldown || '0');
         
