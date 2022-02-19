@@ -1,4 +1,4 @@
-import { World, Commands } from 'mojang-minecraft'
+import { world } from 'mojang-minecraft'
 import Collection from './include/Collection.js';
 import player from '../utils/player.js'
 import event from './manager/EventEmitter.js'
@@ -14,7 +14,7 @@ class CustomCommand {
         this.prefix = "+";
         this.cooldowns = database.table('commandCooldowns')
         this.commands = new Collection();
-        World.events.beforeChat.subscribe(beforeChatPacket => {
+        world.events.beforeChat.subscribe(beforeChatPacket => {
             this.exec(beforeChatPacket)
         })
     };
@@ -93,7 +93,7 @@ class CustomCommand {
         
         command.callback(interaction);
         } catch(e) {
-            Commands.run(`say ${e} ${e.stack}`, World.getDimension('overworld'))
+            console.warn(`say ${e} ${e.stack}, \nplease report error!`)
         }
     };
 };
