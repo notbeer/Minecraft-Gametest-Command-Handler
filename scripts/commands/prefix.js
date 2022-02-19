@@ -1,4 +1,4 @@
-import { World, Commands } from "mojang-minecraft"
+import { world } from "mojang-minecraft"
 import CommandBuilder from "../classes/builders/CommandBuilder.js";
 import CommandHandler from "../classes/CommandRegistration.js"
 
@@ -22,10 +22,10 @@ CommandHandler.register(registration, (interaction) => {
   switch(!!newPrefix) {
     case true:
       CommandHandler.setPrefix(newPrefix)
-      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'prefix has been changed to ' + newPrefix }]})}`, World.getDimension('overworld'))
+      world.getDimension('overworld').runCommand(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'prefix has been changed to ' + newPrefix }]})}`)
       break;
     case false:
-      Commands.run(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'the current prefix is ' + CommandHandler.getPrefix() }]})}`, World.getDimension('overworld'))
+       world.getDimension('overworld').runCommand(`tellraw ${interaction.player.nameTag} ${JSON.stringify({ rawtext: [ { text: 'the current prefix is ' + CommandHandler.getPrefix() }]})}`)
       break;
     default:
       break;
