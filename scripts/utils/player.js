@@ -2,7 +2,7 @@ import { world } from 'mojang-minecraft'
 
 class playerBuilder {
   constructor() {
-    this.dimension = 'overworld'
+    this.dimension = world.getDimension('overworld')
   }
   
   getTags({ name }) {
