@@ -1,11 +1,12 @@
-import { World, Commands } from 'mojang-minecraft'
+import { world } from 'mojang-minecraft'
 
 class playerBuilder {
   constructor() {
+    this.dimension = 'overworld'
   }
   
   getTags({ name }) {
-    const tag_data = Commands.run(`tag "${name}" list`, World.getDimension('overworld'))
+    const tag_data = this.dimension.runCommand(`tag "${name}" list`)
     if(!tag_data?.statusMessage) return []
     
     let tags = tag_data.statusMessage.match(/(?<=: ).*$/)
@@ -29,12 +30,12 @@ class playerBuilder {
   }
   
   exists({ name }) {
-    return World.getPlayers().some(player => player.nameTag == name || player.name == name)
+    return [...world.getPlayers()].some(player => player.nameTag == name || player.name == name)
   }
   
   find({ name }) {
     if(!this.exists({ name })) return
-    return World.getPlayers().find(player => player.nameTag == name || player.name == name)     
+    return [...world.getPlayers()].find(player => player.nameTag == name || player.name == name)     
   }
 }
 
