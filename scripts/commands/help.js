@@ -1,4 +1,4 @@
-import { World, Commands } from "mojang-minecraft"
+import { world } from "mojang-minecraft"
 import CommandBuilder from "../classes/builders/CommandBuilder.js";
 import CommandHandler from "../classes/CommandRegistration.js"
 
@@ -34,8 +34,8 @@ CommandHandler.register(registration, (interaction) => {
         break;
     }
     
-    Commands.run(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`, World.getDimension("overworld"))
+     world.getDimension('overworld').runCommand(`tellraw "${interaction.player.nameTag}" ${JSON.stringify({ rawtext: [ { text: message } ] })}`)
   } catch(e) {
-    Commands.run(`say ${e} ${e.stack}`, World.getDimension('overworld'))
+    console.warn(`say ${e} ${e.stack}`)
   }
 })
