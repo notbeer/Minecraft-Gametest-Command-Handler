@@ -1,4 +1,4 @@
-import { Commands, World } from 'mojang-minecraft'
+import { world } from 'mojang-minecraft'
 
 export default class CommandError {
   constructor({ message, player }) {
@@ -9,6 +9,6 @@ export default class CommandError {
   
   sendErrorMessage() {
     const command = `tellraw "${this.player}" ${JSON.stringify({ rawtext: [ { text: this.message } ] })}`
-    Commands.run(command, World.getDimension('overworld'))
+    world.getDimension('overworld').runCommand(command)
   }
 }
