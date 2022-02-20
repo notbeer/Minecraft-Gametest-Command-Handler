@@ -1,4 +1,4 @@
-import { World } from 'mojang-minecraft'
+import { world } from 'mojang-minecraft'
 
 export class CommandTypeParserBuilder {
   constructor() {
